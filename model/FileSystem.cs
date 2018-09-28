@@ -9,15 +9,10 @@ namespace _1dv607_w2.model
   {
     private string _path;
 
-    public FileSystem(string path)
-    {
-      _path = path;
-    }
+    public FileSystem(string path) => _path = path;
 
-    public void Save(string txt)
-    {
-      File.WriteAllText(_path, txt);
-    }
+    public void SaveAsJSON(Object toJSON) =>
+      File.WriteAllText(_path, JsonConvert.SerializeObject(toJSON));
 
     public List<T> GetParsedJSON<T>()
     {
