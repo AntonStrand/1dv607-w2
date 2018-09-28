@@ -20,10 +20,7 @@ namespace _1dv607_w2.model
       UpdateMembers();
     }
 
-    public ReadOnlyCollection<Member> GetMembers()
-    {
-      return new ReadOnlyCollection<Member>(_members);
-    }
+    public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 
     private int GenerateMemberId() => _members.Count > 0 ? _members[_members.Count - 1].Id + 1 : 0;
 
