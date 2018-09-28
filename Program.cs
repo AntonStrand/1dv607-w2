@@ -1,4 +1,6 @@
-﻿namespace _1dv607_w2
+﻿using System.Collections.Generic;
+
+namespace _1dv607_w2
 {
   class Program
   {
@@ -7,8 +9,8 @@
       model.FileSystem fs = new model.FileSystem("members.json");
       model.Members m = new model.Members(fs);
       view.ConsoleGUI v = new view.ConsoleGUI();
-      controller.Administrator c = new controller.Administrator();
-      while (c.run(v, m)) ;
+      controller.Administrator c = new controller.Administrator(v, m);
+      while ( c.run() );
     }
   }
 }

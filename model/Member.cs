@@ -13,9 +13,10 @@ namespace _1dv607_w2.model
       _id = id;
     }
 
-    public override string ToString()
-    {
-      return $"{_name} {_ssn} {_id}";
-    }
+    public string Name { get => _name; }
+    public string Ssn { get => _ssn; }
+    public int Id { get => _id; }
+
+    public override string ToString() => $"{Name} {Ssn} {Id}";
   }
 }
