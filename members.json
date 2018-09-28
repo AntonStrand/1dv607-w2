@@ -1,0 +1,6 @@
+[
+  { "name": "username", "ssn": "12345678", "id": "1" },
+  { "name": "username1", "ssn": "12345432", "id": "2" },
+  { "name": "username2", "ssn": "14324678", "id": "3" },
+  { "name": "username3", "ssn": "12434643", "id": "4" }
+]
