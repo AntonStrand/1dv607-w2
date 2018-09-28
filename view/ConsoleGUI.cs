@@ -34,7 +34,7 @@ namespace _1dv607_w2.view
       Console.WriteLine("║    1. Add new member                                ║");
       Console.WriteLine("║    2. Update member                                 ║");
       Console.WriteLine("║    3. Delete member                                 ║");
-      Console.WriteLine("║    4. Show verbose list                             ║");
+      Console.WriteLine("║    4. Show compact list                             ║");
       Console.WriteLine("║    5. Show verbose list                             ║");
       Console.WriteLine("║                                                     ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════╝");
