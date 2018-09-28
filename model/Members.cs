@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace _1dv607_w2.model
 {
@@ -10,7 +11,7 @@ namespace _1dv607_w2.model
     public Members(FileSystem fileSystem)
     {
       _fileSystem = fileSystem;
-      GetMembers();
+      LoadMembers();
     }
 
     public void AddMember(string name, string ssn)
@@ -19,14 +20,19 @@ namespace _1dv607_w2.model
       UpdateMembers();
     }
 
+    public ReadOnlyCollection<Member> GetMembers()
+    {
+      return new ReadOnlyCollection<Member>(_members);
+    }
+
     private int GenerateMemberId() => _members.Count > 0 ? _members[_members.Count - 1].Id + 1 : 0;
 
-    private void GetMembers() => _members = _fileSystem.GetParsedJSON<Member>();
+    private void LoadMembers() => _members = _fileSystem.GetParsedJSON<Member>();
 
     private void UpdateMembers()
     {
       _fileSystem.SaveAsJSON(_members);
-      GetMembers();
+      LoadMembers();
     }
   }
 }

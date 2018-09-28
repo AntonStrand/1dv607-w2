@@ -21,15 +21,18 @@ namespace _1dv607_w2.controller
 
       switch (action)
       {
-        case view.ConsoleGUI.Action.Add: AddNewMember(); break;
+        case view.ConsoleGUI.Action.Add:
+          AddNewMember();
+          return true;
         // case '2': return Action.Update;
         // case '3': return Action.Delete;
-        // case '4': return Action.ListCompact;
+         case view.ConsoleGUI.Action.ListCompact: 
+          ListCompact();
+          return true;
         // case '5': return Action.ListVerbose;
         case view.ConsoleGUI.Action.Quit: return false;
         default: return true;
       }
-      return true;
     }
 
     private void AddNewMember()
@@ -39,6 +42,11 @@ namespace _1dv607_w2.controller
       {
         _members.AddMember(newMemberData[0], newMemberData[1]);
       }
+    }
+
+    private void ListCompact()
+    {
+      _view.DisplayCompactList(_members.GetMembers());
     }
   }
 }
