@@ -19,7 +19,7 @@ namespace _1dv607_w2.model
       UpdateMembers();
     }
 
-    private int GenerateMemberId() => _members[_members.Count - 1].Id + 1;
+    private int GenerateMemberId() => _members.Count > 0 ? _members[_members.Count - 1].Id + 1 : 0;
 
     private void GetMembers() => _members = _fileSystem.GetParsedJSON<Member>();
 
