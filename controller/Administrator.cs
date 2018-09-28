@@ -25,8 +25,10 @@ namespace _1dv607_w2.controller
           AddNewMember();
           return true;
         // case '2': return Action.Update;
-        // case '3': return Action.Delete;
-         case view.ConsoleGUI.Action.ListCompact: 
+        case view.ConsoleGUI.Action.Delete:
+          DeleteMember();
+          return true;
+        case view.ConsoleGUI.Action.ListCompact:
           ListCompact();
           return true;
         // case '5': return Action.ListVerbose;
@@ -47,6 +49,15 @@ namespace _1dv607_w2.controller
     private void ListCompact()
     {
       _view.DisplayCompactList(_members.GetMembers());
+    }
+
+    private void DeleteMember()
+    {
+      int index = _view.DisplayDeleteMember(_members.GetMembers());
+      if (index != -1)
+      {
+        _members.DeleteMemberAt(index);
+      }
     }
   }
 }

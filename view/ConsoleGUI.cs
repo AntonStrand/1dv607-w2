@@ -94,17 +94,78 @@ namespace _1dv607_w2.view
       }
       else
       {
+        DisplayNoMembers();
+      }
+      DisplayPressToGoBack();
+
+      Console.ReadKey();
+    }
+
+    public int DisplayDeleteMember(ICollection<model.Member> members)
+    {
+      // Console.CursorVisible = false;
+      Console.Clear();
+
+      int number = 1;
+
+      Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+
+      if (members.Count > 0)
+      {
+        Console.WriteLine($"║  {"",5}   |  {"",-42}  ║");
+        Console.WriteLine($"║  {"Number",5}  |  {"Name",-42}  ║");
+        Console.WriteLine($"║  {"",5}   |  {"",-42}  ║");
+        foreach (model.Member m in members)
+        {
+          Console.WriteLine("║---------------------------------------------------------║");
+          Console.WriteLine($"║    {number,-4}  |  {m.Name,-42}  ║");
+          number++;
+        }
+        Console.WriteLine("║---------------------------------------------------------║");
         Console.WriteLine("║                                                         ║");
-        Console.WriteLine("║             You need to add members first               ║");
+        Console.WriteLine("║    Type in the number of the member you want to         ║");
+        Console.WriteLine($"║    delete or Press {CANCEL} to cancel.                         ║");
         Console.WriteLine("║                                                         ║");
+        Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
+        string command = Console.ReadLine();
+        int deleteIndex = -1;
+
+        if (int.TryParse(command, out deleteIndex) && deleteIndex > 0 && deleteIndex <= members.Count + 1)
+        {
+          Console.Write($"Are you sure? ({YES}/{NO}) or {CANCEL} to cancel: ");
+          char answer = Console.ReadKey().KeyChar;
+
+          return answer == YES
+            ? deleteIndex - 1
+            : answer == CANCEL
+              ? -1
+              : DisplayDeleteMember(members);
+        }
+      }
+      else
+      {
+        DisplayNoMembers();
+        DisplayPressToGoBack();
+        Console.ReadKey();
       }
 
+      return -1;
+    }
+
+    private void DisplayNoMembers()
+    {
+      Console.WriteLine("║                                                         ║");
+      Console.WriteLine("║             You need to add members first               ║");
+      Console.WriteLine("║                                                         ║");
+    }
+
+    private void DisplayPressToGoBack()
+    {
       Console.WriteLine("║---------------------------------------------------------║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("║           Press any key to go back to menu              ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
-      Console.ReadKey();
     }
   }
 }
