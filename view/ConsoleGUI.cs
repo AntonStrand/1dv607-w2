@@ -55,25 +55,8 @@ namespace _1dv607_w2.view
       }
     }
 
-    public MemberFormData DisplayAddMember()
-    {
-      Console.CursorVisible = true;
-      Console.Clear();
-      Console.WriteLine("Add member");
-      Console.WriteLine("Please provide the required member information.\n");
-      Console.Write("Name: ");
-      string name = Console.ReadLine();
-      Console.Write("Social Security Number: ");
-      string ssn = Console.ReadLine();
-      Console.Write($"Is this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
-      char answer = Console.ReadKey().KeyChar;
-
-      return answer == YES
-        ? new MemberFormData(name, ssn)
-        : answer == CANCEL
-          ? new MemberFormData()
-          : DisplayAddMember();
-    }
+    public MemberFormData DisplayAddMember() => DisplayMember("Add member");
+    public MemberFormData DisplayUpdateMember() => DisplayMember("Update member");
 
     public void DisplayCompactList(ICollection<model.Member> members)
     {
@@ -104,6 +87,26 @@ namespace _1dv607_w2.view
 
     public int DisplayDeleteMember(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
     public int DisplayUpdateMember(ICollection<model.Member> members) => DisplayChooseMember("update", members);
+
+    public MemberFormData DisplayMember(string headline)
+    {
+      Console.CursorVisible = true;
+      Console.Clear();
+      Console.WriteLine(headline);
+      Console.WriteLine("Please provide the required member information.\n");
+      Console.Write("Name: ");
+      string name = Console.ReadLine();
+      Console.Write("Social Security Number: ");
+      string ssn = Console.ReadLine();
+      Console.Write($"Is this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
+      char answer = Console.ReadKey().KeyChar;
+
+      return answer == YES
+        ? new MemberFormData(name, ssn)
+        : answer == CANCEL
+          ? new MemberFormData()
+          : DisplayMember(headline);
+    }
 
     private int DisplayChooseMember(string action, ICollection<model.Member> members)
     {

@@ -64,8 +64,11 @@ namespace _1dv607_w2.controller
       int index = _view.DisplayUpdateMember(_members.GetMembers());
       if (index != -1)
       {
-        // Get new user information 
-        // _members.UpdateMemberAt(index, name, ssn);
+        MemberFormData newMemberData = _view.DisplayUpdateMember();
+        if (newMemberData.IsValid())
+        {
+          _members.UpdateMemberAt(index, newMemberData.Name, newMemberData.Ssn);
+        }
       }
     }
 
