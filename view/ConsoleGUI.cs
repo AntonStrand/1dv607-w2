@@ -58,8 +58,8 @@ namespace _1dv607_w2.view
       }
     }
 
-    public MemberFormData DisplayAddMember() => DisplayMember("Add member");
-    public MemberFormData GetUpdateMemberIndex() => DisplayMember("Update member");
+    public MemberFormData DisplayAddMember() => DisplayMemberForm("Add member");
+    public MemberFormData GetUpdateMemberIndex() => DisplayMemberForm("Update member");
 
     public void DisplayCompactList(ICollection<model.Member> members)
     {
@@ -92,7 +92,7 @@ namespace _1dv607_w2.view
     public int GetUpdateMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("update", members);
     public int GetBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
 
-    public MemberFormData DisplayMember(string headline)
+    private MemberFormData DisplayMemberForm(string headline)
     {
       Console.CursorVisible = true;
       Console.Clear();
@@ -109,7 +109,7 @@ namespace _1dv607_w2.view
         ? new MemberFormData(name, ssn)
         : answer == CANCEL
           ? new MemberFormData()
-          : DisplayMember(headline);
+          : DisplayMemberForm(headline);
     }
 
     private int DisplayChooseMember(string action, ICollection<model.Member> members)
