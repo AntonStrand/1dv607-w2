@@ -19,15 +19,23 @@ namespace _1dv607_w2.model
 
     public void AddMember(string name, string ssn) => _members.Add(new Member(name, ssn, GenerateMemberId()));
 
+    public void AddBoatToMemberAt(int index, Boat boat)
+    {
+      if (index < 0 || index >= _members.Count)
+        throw new ArgumentOutOfRangeException($"{index} is not a valid index.");
+
+      _members[index].AddBoat(boat);
+    }
     public void DeleteMemberAt(int index) => _members.RemoveAt(index);
 
-    public void UpdateMemberAt(int index, string name, string ssn) {
-      if(index < 0 || index >= _members.Count)
+    public void UpdateMemberAt(int index, string name, string ssn)
+    {
+      if (index < 0 || index >= _members.Count)
         throw new ArgumentOutOfRangeException($"{index} is not a valid index.");
 
       _members[index].Name = name;
       _members[index].Ssn = ssn;
-    } 
+    }
 
     public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 

@@ -7,16 +7,21 @@ namespace _1dv607_w2.model
       Sailboat,
       Motorsailer,
       Canoe,
-      Other
+      Other,
+      Count,
+      None
     }
 
-    private Type _type;
-    private int _length;
+    protected Type _type;
+    protected Measurement _length;
 
-    public Boat(Type type, int length)
+    public Boat(Type type, Measurement length)
     {
       _type = type;
       _length = length;
     }
+
+    public Type BoatType { get => _type; }
+    public Measurement Length { get => _length; }
   }
 }

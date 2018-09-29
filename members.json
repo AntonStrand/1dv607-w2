@@ -1,6 +1,48 @@
 [
-  { "name": "username", "ssn": "12345678", "id": "1" },
-  { "name": "username1", "ssn": "12345432", "id": "2" },
-  { "name": "username2", "ssn": "14324678", "id": "3" },
-  { "name": "username3", "ssn": "12434643", "id": "4" }
+  {
+    "Name": "username",
+    "Ssn": "12345678",
+    "Id": 1,
+    "Boats": [
+      {
+        "BoatType": 0,
+        "Length": {
+          "Value": 12,
+          "MeasurementUnit": 0
+        }
+      }
+    ]
+  },
+  {
+    "Name": "username1",
+    "Ssn": "12345432",
+    "Id": 2,
+    "Boats": []
+  },
+  {
+    "Name": "username2",
+    "Ssn": "14324678",
+    "Id": 3,
+    "Boats": []
+  },
+  {
+    "Name": "username3",
+    "Ssn": "12434643",
+    "Id": 4,
+    "Boats": []
+  },
+  {
+    "Name": "Test",
+    "Ssn": "34234833",
+    "Id": 5,
+    "Boats": [
+      {
+        "BoatType": 1,
+        "Length": {
+          "Value": 50,
+          "MeasurementUnit": 0
+        }
+      }
+    ]
+  }
 ]

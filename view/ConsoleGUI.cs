@@ -61,6 +61,8 @@ namespace _1dv607_w2.view
     public MemberFormData DisplayAddMember() => DisplayMemberForm("Add member");
     public MemberFormData GetUpdateMemberIndex() => DisplayMemberForm("Update member");
 
+    public BoatFormData GetNewBoatInformation() => GetBoatInformation("Add new boat");
+
     public void DisplayCompactList(ICollection<model.Member> members)
     {
       Console.CursorVisible = false;
@@ -110,6 +112,68 @@ namespace _1dv607_w2.view
         : answer == CANCEL
           ? new MemberFormData()
           : DisplayMemberForm(headline);
+    }
+
+    private BoatFormData GetBoatInformation(string headline)
+    {
+      int typeCount = (int)Boat.Type.Count;
+      int unitCount = (int)Measurement.Unit.Count;
+
+      Console.CursorVisible = true;
+      //Console.Clear();
+      Console.WriteLine(headline);
+      Console.WriteLine("Please provide the required boat information.\n");
+      Console.WriteLine($"Type of boat\n");
+
+      for (int type = 0; type < typeCount; type++)
+      {
+        Console.WriteLine($"  {type + 1}. {(Boat.Type)type}");
+      }
+
+      Console.Write($"\nNumber (1-{typeCount}): ");
+      string typeId = Console.ReadLine();
+      int typeIndex;
+      if (!int.TryParse(typeId, out typeIndex) || typeIndex < 1 || typeIndex > typeCount)
+      {
+        GetBoatInformation(headline);
+      }
+
+      Console.WriteLine($"\n\nSelect measurement unit\n");
+
+      for (int unit = 0; unit < unitCount; unit++)
+      {
+        Console.WriteLine($"  {unit + 1}. {(Measurement.Unit)unit}");
+      }
+
+      Console.Write($"\nNumber (1-{unitCount}): ");
+      string unitId = Console.ReadLine();
+
+      int unitIndex;
+      if (!int.TryParse(unitId, out unitIndex) || unitIndex < 1 || unitIndex > unitCount)
+      {
+        GetBoatInformation(headline);
+      }
+
+      Console.Write($"\n\nLength in {(Measurement.Unit)(unitIndex - 1)}: ");
+      string lengthStr = Console.ReadLine();
+
+      int length;
+      if (!int.TryParse(lengthStr, out length) || length < 1)
+      {
+        GetBoatInformation(headline);
+      }
+
+      Console.Write($"\n\nIs this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
+      char answer = Console.ReadKey().KeyChar;
+
+      typeIndex -= 1;
+      unitIndex -= 1;
+
+      return answer == YES
+        ? new BoatFormData((Boat.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
+        : answer == CANCEL
+          ? new BoatFormData()
+          : GetBoatInformation(headline);
     }
 
     private int DisplayChooseMember(string action, ICollection<model.Member> members)
