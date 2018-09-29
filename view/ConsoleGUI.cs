@@ -101,9 +101,11 @@ namespace _1dv607_w2.view
       Console.ReadKey();
     }
 
-    public int DisplayDeleteMember(ICollection<model.Member> members)
+    public int DisplayDeleteMember(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
+    public int DisplayUpdateMember(ICollection<model.Member> members) => DisplayChooseMember("update", members);
+
+    private int DisplayChooseMember(string action, ICollection<model.Member> members)
     {
-      // Console.CursorVisible = false;
       Console.Clear();
 
       int number = 1;
@@ -124,7 +126,7 @@ namespace _1dv607_w2.view
         Console.WriteLine("║---------------------------------------------------------║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("║    Type in the number of the member you want to         ║");
-        Console.WriteLine($"║    delete or Press {CANCEL} to cancel.                         ║");
+        Console.WriteLine($"║    {action} or Press {CANCEL} to cancel.                         ║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
         string command = Console.ReadLine();
@@ -138,6 +140,12 @@ namespace _1dv607_w2.view
           return answer == YES
             ? deleteIndex - 1
             : answer == CANCEL
+              ? -1
+              : DisplayDeleteMember(members);
+        }
+        else
+        {
+          return command == CANCEL.ToString()
               ? -1
               : DisplayDeleteMember(members);
         }
