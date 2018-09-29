@@ -131,24 +131,24 @@ namespace _1dv607_w2.view
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
         string command = Console.ReadLine();
-        int deleteIndex = -1;
+        int index = -1;
 
-        if (int.TryParse(command, out deleteIndex) && deleteIndex > 0 && deleteIndex <= members.Count + 1)
+        if (int.TryParse(command, out index) && index > 0 && index <= members.Count + 1)
         {
           Console.Write($"Are you sure? ({YES}/{NO}) or {CANCEL} to cancel: ");
           char answer = Console.ReadKey().KeyChar;
 
           return answer == YES
-            ? deleteIndex - 1
+            ? index - 1
             : answer == CANCEL
               ? -1
-              : DisplayDeleteMember(members);
+              : DisplayChooseMember(action, members);
         }
         else
         {
           return command == CANCEL.ToString()
               ? -1
-              : DisplayDeleteMember(members);
+              : DisplayChooseMember(action, members);
         }
       }
       else
