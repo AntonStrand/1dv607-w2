@@ -1,13 +1,15 @@
 using System.Collections.Generic;
+using _1dv607_w2.model;
+using _1dv607_w2.view;
 
 namespace _1dv607_w2.controller
 {
   class Administrator
   {
-    view.ConsoleGUI _view;
-    model.Members _members;
+    ConsoleGUI _view;
+    Members _members;
 
-    public Administrator(view.ConsoleGUI v, model.Members members)
+    public Administrator(ConsoleGUI v, Members members)
     {
       _view = v;
       _members = members;
@@ -17,20 +19,20 @@ namespace _1dv607_w2.controller
     {
       _view.DisplayActionMenu();
 
-      view.ConsoleGUI.Action action = _view.GetAction();
+      ConsoleGUI.Action action = _view.GetAction();
 
       switch (action)
       {
-        case view.ConsoleGUI.Action.Add: AddNewMember();
+        case ConsoleGUI.Action.Add: AddNewMember();
           return true;
 
-        case view.ConsoleGUI.Action.Update: UpdateMember();
+        case ConsoleGUI.Action.Update: UpdateMember();
           return true;
 
-        case view.ConsoleGUI.Action.Delete: DeleteMember();
+        case ConsoleGUI.Action.Delete: DeleteMember();
           return true;
 
-        case view.ConsoleGUI.Action.ListCompact: ListCompact();
+        case ConsoleGUI.Action.ListCompact: ListCompact();
           return true;
 
         // case '5': return Action.ListVerbose;
@@ -41,10 +43,10 @@ namespace _1dv607_w2.controller
 
     private void AddNewMember()
     {
-      List<string> newMemberData = _view.DisplayAddMember();
-      if (newMemberData.Count > 0)
+      MemberFormData newMemberData = _view.DisplayAddMember();
+      if (newMemberData.IsValid())
       {
-        _members.AddMember(newMemberData[0], newMemberData[1]);
+        _members.AddMember(newMemberData.Name, newMemberData.Ssn);
       }
     }
 

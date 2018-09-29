@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _1dv607_w2.model;
 
 namespace _1dv607_w2.view
 {
@@ -54,7 +55,7 @@ namespace _1dv607_w2.view
       }
     }
 
-    public List<string> DisplayAddMember()
+    public MemberFormData DisplayAddMember()
     {
       Console.CursorVisible = true;
       Console.Clear();
@@ -68,9 +69,9 @@ namespace _1dv607_w2.view
       char answer = Console.ReadKey().KeyChar;
 
       return answer == YES
-        ? new List<string> { name, ssn }
+        ? new MemberFormData(name, ssn)
         : answer == CANCEL
-          ? new List<string>()
+          ? new MemberFormData()
           : DisplayAddMember();
     }
 
