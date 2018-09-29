@@ -23,20 +23,29 @@ namespace _1dv607_w2.controller
 
       switch (action)
       {
-        case ConsoleGUI.Action.Add: AddNewMember();
+        case ConsoleGUI.Action.Add:
+          AddNewMember();
           return true;
 
-        case ConsoleGUI.Action.Update: UpdateMember();
+        case ConsoleGUI.Action.Update:
+          UpdateMember();
           return true;
 
-        case ConsoleGUI.Action.Delete: DeleteMember();
+        case ConsoleGUI.Action.Delete:
+          DeleteMember();
           return true;
 
-        case ConsoleGUI.Action.ListCompact: ListCompact();
+        case ConsoleGUI.Action.ListCompact:
+          ListCompact();
           return true;
 
         // case '5': return Action.ListVerbose;
-        case view.ConsoleGUI.Action.Quit: _members.SaveMembers();
+        case ConsoleGUI.Action.RegisterBoat:
+          RegisterNewBoat();
+          return true;
+
+        case view.ConsoleGUI.Action.Quit:
+          _members.SaveMembers();
           return false;
 
         default: return true;
@@ -54,7 +63,7 @@ namespace _1dv607_w2.controller
 
     private void DeleteMember()
     {
-      int index = _view.DisplayDeleteMember(_members.GetMembers());
+      int index = _view.GetDeleteMemberIndex(_members.GetMembers());
       if (index != -1)
       {
         _members.DeleteMemberAt(index);
@@ -63,10 +72,10 @@ namespace _1dv607_w2.controller
 
     private void UpdateMember()
     {
-      int index = _view.DisplayUpdateMember(_members.GetMembers());
+      int index = _view.GetUpdateMemberIndex(_members.GetMembers());
       if (index != -1)
       {
-        MemberFormData newMemberData = _view.DisplayUpdateMember();
+        MemberFormData newMemberData = _view.GetUpdateMemberIndex();
         if (newMemberData.IsValid())
         {
           _members.UpdateMemberAt(index, newMemberData.Name, newMemberData.Ssn);
@@ -75,6 +84,11 @@ namespace _1dv607_w2.controller
     }
 
     private void ListCompact() => _view.DisplayCompactList(_members.GetMembers());
+
+    private void RegisterNewBoat()
+    {
+      int index = _view.GetBoatOwnerIndex(_members.GetMembers());
+    }
 
   }
 }

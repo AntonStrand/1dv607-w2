@@ -17,6 +17,7 @@ namespace _1dv607_w2.view
       Delete,
       ListCompact,
       ListVerbose,
+      RegisterBoat,
       Quit,
       None,
     }
@@ -37,6 +38,7 @@ namespace _1dv607_w2.view
       Console.WriteLine("║      3. Delete member                                   ║");
       Console.WriteLine("║      4. Show compact list                               ║");
       Console.WriteLine("║      5. Show verbose list                               ║");
+      Console.WriteLine("║      6. Register new boat                               ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
@@ -50,13 +52,14 @@ namespace _1dv607_w2.view
         case '3': return Action.Delete;
         case '4': return Action.ListCompact;
         case '5': return Action.ListVerbose;
+        case '6': return Action.RegisterBoat;
         case 'q': return Action.Quit;
         default: return Action.None;
       }
     }
 
     public MemberFormData DisplayAddMember() => DisplayMember("Add member");
-    public MemberFormData DisplayUpdateMember() => DisplayMember("Update member");
+    public MemberFormData GetUpdateMemberIndex() => DisplayMember("Update member");
 
     public void DisplayCompactList(ICollection<model.Member> members)
     {
@@ -85,8 +88,9 @@ namespace _1dv607_w2.view
       Console.ReadKey();
     }
 
-    public int DisplayDeleteMember(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
-    public int DisplayUpdateMember(ICollection<model.Member> members) => DisplayChooseMember("update", members);
+    public int GetDeleteMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
+    public int GetUpdateMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("update", members);
+    public int GetBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
 
     public MemberFormData DisplayMember(string headline)
     {
@@ -130,7 +134,7 @@ namespace _1dv607_w2.view
         Console.WriteLine("║---------------------------------------------------------║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("║    Type in the number of the member you want to         ║");
-        Console.WriteLine($"║    {action} or Press {CANCEL} to cancel.                         ║");
+        Console.WriteLine($"║    {$"{action} or Press {CANCEL} to cancel",-49}    ║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
         string command = Console.ReadLine();
