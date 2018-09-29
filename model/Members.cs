@@ -15,13 +15,12 @@ namespace _1dv607_w2.model
       LoadMembers();
     }
 
-    public void AddMember(string name, string ssn)
-    {
-      _members.Add(new Member(name, ssn, GenerateMemberId()));
-      UpdateMembers();
-    }
+    public void SaveMembers() => _fileSystem.SaveAsJSON(_members);
+
+    public void AddMember(string name, string ssn) => _members.Add(new Member(name, ssn, GenerateMemberId()));
 
     public void DeleteMemberAt(int index) => _members.RemoveAt(index);
+
     public void UpdateMemberAt(int index, string name, string ssn) {
       if(index < 0 || index >= _members.Count)
         throw new ArgumentOutOfRangeException($"{index} is not a valid index.");
@@ -35,11 +34,5 @@ namespace _1dv607_w2.model
     private int GenerateMemberId() => _members.Count > 0 ? _members[_members.Count - 1].Id + 1 : 0;
 
     private void LoadMembers() => _members = _fileSystem.GetParsedJSON<Member>();
-
-    private void UpdateMembers()
-    {
-      _fileSystem.SaveAsJSON(_members);
-      LoadMembers();
-    }
   }
 }

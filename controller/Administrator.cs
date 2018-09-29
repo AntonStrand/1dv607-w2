@@ -36,7 +36,9 @@ namespace _1dv607_w2.controller
           return true;
 
         // case '5': return Action.ListVerbose;
-        case view.ConsoleGUI.Action.Quit: return false;
+        case view.ConsoleGUI.Action.Quit: _members.SaveMembers();
+          return false;
+
         default: return true;
       }
     }
