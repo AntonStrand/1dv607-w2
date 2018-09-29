@@ -21,16 +21,18 @@ namespace _1dv607_w2.controller
 
       switch (action)
       {
-        case view.ConsoleGUI.Action.Add:
-          AddNewMember();
+        case view.ConsoleGUI.Action.Add: AddNewMember();
           return true;
-        // case '2': return Action.Update;
-        case view.ConsoleGUI.Action.Delete:
-          DeleteMember();
+
+        case view.ConsoleGUI.Action.Update: UpdateMember();
           return true;
-        case view.ConsoleGUI.Action.ListCompact:
-          ListCompact();
+
+        case view.ConsoleGUI.Action.Delete: DeleteMember();
           return true;
+
+        case view.ConsoleGUI.Action.ListCompact: ListCompact();
+          return true;
+
         // case '5': return Action.ListVerbose;
         case view.ConsoleGUI.Action.Quit: return false;
         default: return true;
@@ -46,11 +48,6 @@ namespace _1dv607_w2.controller
       }
     }
 
-    private void ListCompact()
-    {
-      _view.DisplayCompactList(_members.GetMembers());
-    }
-
     private void DeleteMember()
     {
       int index = _view.DisplayDeleteMember(_members.GetMembers());
@@ -59,5 +56,18 @@ namespace _1dv607_w2.controller
         _members.DeleteMemberAt(index);
       }
     }
+
+    private void UpdateMember()
+    {
+      int index = _view.DisplayUpdateMember(_members.GetMembers());
+      if (index != -1)
+      {
+        // Get new user information 
+        // _members.UpdateMemberAt(index, name, ssn);
+      }
+    }
+
+    private void ListCompact() => _view.DisplayCompactList(_members.GetMembers());
+
   }
 }
