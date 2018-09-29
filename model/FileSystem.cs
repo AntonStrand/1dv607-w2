@@ -12,7 +12,7 @@ namespace _1dv607_w2.model
     public FileSystem(string path) => _path = path;
 
     public void SaveAsJSON(Object toJSON) =>
-      File.WriteAllText(_path, JsonConvert.SerializeObject(toJSON));
+      File.WriteAllText(_path, JsonConvert.SerializeObject(toJSON, Formatting.Indented));
 
     public List<T> GetParsedJSON<T>()
     {
