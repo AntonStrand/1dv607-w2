@@ -247,7 +247,7 @@ namespace _1dv607_w2.view
         string command = Console.ReadLine();
         int index = -1;
 
-        if (int.TryParse(command, out index) && index > 0 && index <= members.Count + 1)
+        if (int.TryParse(command, out index) && index > 0 && index <= members.Count)
         {
           Console.Write($"Are you sure? ({YES}/{NO}) or {CANCEL} to cancel: ");
           char answer = Console.ReadKey().KeyChar;
