@@ -22,6 +22,23 @@ namespace _1dv607_w2.view
       Quit,
       None,
     }
+
+    public Action GetAction()
+    {
+      switch (Console.ReadKey().KeyChar)
+      {
+        case '1': return Action.Add;
+        case '2': return Action.Update;
+        case '3': return Action.Delete;
+        case '4': return Action.ViewMember;
+        case '5': return Action.ListCompact;
+        case '6': return Action.ListVerbose;
+        case '7': return Action.RegisterBoat;
+        case 'q': return Action.Quit;
+        default: return Action.None;
+      }
+    }
+
     public void DisplayActionMenu()
     {
       Console.Clear();
@@ -43,22 +60,6 @@ namespace _1dv607_w2.view
       Console.WriteLine("║      7. Register new boat                               ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
-    }
-
-    public Action GetAction()
-    {
-      switch (Console.ReadKey().KeyChar)
-      {
-        case '1': return Action.Add;
-        case '2': return Action.Update;
-        case '3': return Action.Delete;
-        case '4': return Action.ViewMember;
-        case '5': return Action.ListCompact;
-        case '6': return Action.ListVerbose;
-        case '7': return Action.RegisterBoat;
-        case 'q': return Action.Quit;
-        default: return Action.None;
-      }
     }
 
     public MemberFormData DisplayAddMember() => DisplayMemberForm("Add member");
