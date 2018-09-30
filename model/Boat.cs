@@ -21,7 +21,7 @@ namespace _1dv607_w2.model
       _length = length;
     }
 
-    public Type BoatType { get => _type; }
+    public Type BoatType { get => _type; set => _type = value; }
     public Measurement Length { get => _length; }
   }
 }
