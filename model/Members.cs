@@ -27,6 +27,9 @@ namespace _1dv607_w2.model
       _members[index].AddBoat(boat);
     }
     public void DeleteMemberAt(int index) => _members.RemoveAt(index);
+    public Member GetMemberAt(int index) => (index < 0 || index >= _members.Count)
+        ? throw new ArgumentOutOfRangeException($"{index} is not a valid index.")
+        : _members[index];
 
     public void UpdateMemberAt(int index, string name, string ssn)
     {
