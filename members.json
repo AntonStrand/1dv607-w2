@@ -7,14 +7,14 @@
     "hasBoats": true,
     "Boats": [
       {
-        "BoatType": 0,
+        "Type": 0,
         "Length": {
           "Value": 12,
           "MeasurementUnit": 0
         }
       },
       {
-        "BoatType": 2,
+        "Type": 2,
         "Length": {
           "Value": 3,
           "MeasurementUnit": 1
@@ -34,9 +34,17 @@
     "Name": "username2",
     "Ssn": "14324678",
     "Id": 3,
-    "NumberOfBoats": 0,
-    "hasBoats": false,
-    "Boats": []
+    "NumberOfBoats": 1,
+    "hasBoats": true,
+    "Boats": [
+      {
+        "Type": 1,
+        "Length": {
+          "Value": 4,
+          "MeasurementUnit": 1
+        }
+      }
+    ]
   },
   {
     "Name": "username3",
@@ -54,7 +62,7 @@
     "hasBoats": true,
     "Boats": [
       {
-        "BoatType": 0,
+        "Type": 0,
         "Length": {
           "Value": 50,
           "MeasurementUnit": 0

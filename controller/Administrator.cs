@@ -110,7 +110,7 @@ namespace _1dv607_w2.controller
         BoatFormData boatData = _view.GetNewBoatInformation();
         if (boatData.isValid())
         {
-          _members.AddBoatToMemberAt(index, new Boat(boatData.BoatType, boatData.Length));
+          _members.AddBoatToMemberAt(index, new Boat(boatData.Type, boatData.Length));
         }
       }
     }

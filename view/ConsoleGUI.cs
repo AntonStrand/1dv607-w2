@@ -159,7 +159,7 @@ namespace _1dv607_w2.view
 
     private BoatFormData GetBoatInformation(string headline)
     {
-      int typeCount = (int)Boat.Type.Count;
+      int typeCount = (int)BoatTypes.Type.Count;
       int unitCount = (int)Measurement.Unit.Count;
 
       Console.CursorVisible = true;
@@ -170,7 +170,7 @@ namespace _1dv607_w2.view
 
       for (int type = 0; type < typeCount; type++)
       {
-        Console.WriteLine($"  {type + 1}. {(Boat.Type)type}");
+        Console.WriteLine($"  {type + 1}. {(BoatTypes.Type)type}");
       }
 
       Console.Write($"\nNumber (1-{typeCount}): ");
@@ -213,7 +213,7 @@ namespace _1dv607_w2.view
       unitIndex -= 1;
 
       return answer == YES
-        ? new BoatFormData((Boat.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
+        ? new BoatFormData((BoatTypes.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
         : answer == CANCEL
           ? new BoatFormData()
           : GetBoatInformation(headline);
@@ -307,7 +307,7 @@ namespace _1dv607_w2.view
         for (int i = 0; i < m.NumberOfBoats; i++)
         {
           Boat b = m.Boats[i];
-          Console.WriteLine($"║  {i + 1,-5}  |  {b.BoatType,-24}  |  {$"{b.Length.Value} {b.Length.MeasurementUnit}",-14}  ║");
+          Console.WriteLine($"║  {i + 1,-5}  |  {b.Type,-24}  |  {$"{b.Length.Value} {b.Length.MeasurementUnit}",-14}  ║");
         }
       }
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
