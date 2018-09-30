@@ -294,7 +294,9 @@ namespace _1dv607_w2.view
     private void DisplayMemberData(Member m)
     {
       Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+      Console.WriteLine("║                                                         ║");
       Console.WriteLine($"║  {$"Id: {m.Id}",-5}     {$"Name: {m.Name}",-22}    {$"SSN: {m.Ssn}",-17}  ║");
+      Console.WriteLine("║                                                         ║");
 
       if (m.hasBoats)
       {
