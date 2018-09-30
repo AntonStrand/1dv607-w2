@@ -15,6 +15,7 @@ namespace _1dv607_w2.view
       Add,
       Update,
       Delete,
+      ViewMember,
       ListCompact,
       ListVerbose,
       RegisterBoat,
@@ -31,14 +32,15 @@ namespace _1dv607_w2.view
       Console.WriteLine("║  _____________________________________________________  ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("║   Choose one of the actions below by typing the         ║");
-      Console.WriteLine("║   corresponding number. Press \"q\" to quit.              ║");
+      Console.WriteLine("║   corresponding number. Press \"q\" to save and quit.     ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("║      1. Add new member                                  ║");
       Console.WriteLine("║      2. Update member                                   ║");
       Console.WriteLine("║      3. Delete member                                   ║");
-      Console.WriteLine("║      4. Show compact list                               ║");
-      Console.WriteLine("║      5. Show verbose list                               ║");
-      Console.WriteLine("║      6. Register new boat                               ║");
+      Console.WriteLine("║      4. View member                                     ║");
+      Console.WriteLine("║      5. Show compact list                               ║");
+      Console.WriteLine("║      6. Show verbose list                               ║");
+      Console.WriteLine("║      7. Register new boat                               ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
@@ -50,9 +52,10 @@ namespace _1dv607_w2.view
         case '1': return Action.Add;
         case '2': return Action.Update;
         case '3': return Action.Delete;
-        case '4': return Action.ListCompact;
-        case '5': return Action.ListVerbose;
-        case '6': return Action.RegisterBoat;
+        case '4': return Action.ViewMember;
+        case '5': return Action.ListCompact;
+        case '6': return Action.ListVerbose;
+        case '7': return Action.RegisterBoat;
         case 'q': return Action.Quit;
         default: return Action.None;
       }
@@ -75,10 +78,11 @@ namespace _1dv607_w2.view
         Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
         Console.WriteLine($"║  {"ID",-5}  |  {"Name",-24} |  {"Number of boats",15}  ║");
         Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
+        Console.WriteLine("║---------------------------------------------------------║");
         foreach (model.Member m in members)
         {
-          Console.WriteLine("║---------------------------------------------------------║");
           Console.WriteLine($"║  {m.Id,-5}  |  {m.Name,-24} |  {m.NumberOfBoats,15}  ║");
+          Console.WriteLine("║---------------------------------------------------------║");
         }
       }
       else
@@ -95,37 +99,18 @@ namespace _1dv607_w2.view
       Console.CursorVisible = false;
       Console.Clear();
 
-      Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
 
       if (members.Count > 0)
       {
-        Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
-        Console.WriteLine($"║  {"ID",-5}  |  {"Name",-24} |  {"Personal number",15}  ║");
-        Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
         foreach (model.Member m in members)
         {
-          Console.WriteLine("║---------------------------------------------------------║");
-          // Console.WriteLine("║_________________________________________________________║");
-          Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
-          Console.WriteLine($"║  {m.Id,-5}  |  {m.Name,-24} |  {m.Ssn,-15}  ║");
-
-          if (m.hasBoats)
-          {
-            Console.WriteLine("║---------------------------------------------------------║");
-            Console.WriteLine("║         |  Boats  |  Length         |  Type             ║");
-            Console.WriteLine("║---------------------------------------------------------║");
-
-            for (int i = 0; i < m.NumberOfBoats; i++)
-            {
-              Boat b = m.Boats[i];
-              Console.WriteLine($"║         |  {i + 1,-5}  |  {$"{b.Length.Value} {b.Length.MeasurementUnit}",-13}  |  {b.BoatType,-15}  ║");
-            }
-          }
-
+          DisplayMemberData(m);
         }
+        Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
       }
       else
       {
+        Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
         DisplayNoMembers();
       }
       DisplayPressToGoBack();
@@ -133,8 +118,22 @@ namespace _1dv607_w2.view
       Console.ReadKey();
     }
 
+    public void DisplayMember(Member member)
+    {
+      Console.CursorVisible = false;
+      Console.Clear();
+
+      DisplayMemberData(member);
+
+      Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+      DisplayPressToGoBack();
+
+      Console.ReadKey();
+    }
+
     public int GetDeleteMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
     public int GetUpdateMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("update", members);
+    public int GetViewMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("view", members);
     public int GetBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
 
     private MemberFormData DisplayMemberForm(string headline)
@@ -280,14 +279,34 @@ namespace _1dv607_w2.view
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("║             You need to add members first               ║");
       Console.WriteLine("║                                                         ║");
+      Console.WriteLine("║---------------------------------------------------------║");
     }
 
     private void DisplayPressToGoBack()
     {
-      Console.WriteLine("║---------------------------------------------------------║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("║           Press any key to go back to menu              ║");
       Console.WriteLine("║                                                         ║");
+      Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
+    }
+
+    private void DisplayMemberData(Member m)
+    {
+      Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+      Console.WriteLine($"║  {$"Id: {m.Id}",-5}     {$"Name: {m.Name}",-22}    {$"SSN: {m.Ssn}",-17}  ║");
+
+      if (m.hasBoats)
+      {
+        Console.WriteLine("║---------------------------------------------------------║");
+        Console.WriteLine("║  Boats  |  Type                      |  Length          ║");
+        Console.WriteLine("║---------------------------------------------------------║");
+
+        for (int i = 0; i < m.NumberOfBoats; i++)
+        {
+          Boat b = m.Boats[i];
+          Console.WriteLine($"║  {i + 1,-5}  |  {b.BoatType,-24}  |  {$"{b.Length.Value} {b.Length.MeasurementUnit}",-14}  ║");
+        }
+      }
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
   }
