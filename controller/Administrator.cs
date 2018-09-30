@@ -94,13 +94,11 @@ namespace _1dv607_w2.controller
       int index = _view.GetBoatOwnerIndex(_members.GetMembers());
       if (index != -1)
       {
-        // Display Boat form.
         BoatFormData boatData = _view.GetNewBoatInformation();
         if (boatData.isValid())
         {
           _members.AddBoatToMemberAt(index, new Boat(boatData.BoatType, boatData.Length));
         }
-        // Send response and member index to _members.
       }
     }
   }
