@@ -35,6 +35,10 @@ namespace _1dv607_w2.controller
           DeleteMember();
           return true;
 
+        case ConsoleGUI.Action.ViewMember:
+          ViewMember();
+          return true;
+
         case ConsoleGUI.Action.ListCompact:
           ListCompact();
           return true;
@@ -70,6 +74,15 @@ namespace _1dv607_w2.controller
       if (index != -1)
       {
         _members.DeleteMemberAt(index);
+      }
+    }
+
+    private void ViewMember()
+    {
+      int index = _view.GetViewMemberIndex(_members.GetMembers());
+      if (index != -1)
+      {
+        _view.DisplayMember(_members.GetMemberAt(index));
       }
     }
 
