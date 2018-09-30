@@ -3,12 +3,21 @@
     "Name": "username",
     "Ssn": "12345678",
     "Id": 1,
+    "NumberOfBoats": 2,
+    "hasBoats": true,
     "Boats": [
       {
         "BoatType": 0,
         "Length": {
           "Value": 12,
           "MeasurementUnit": 0
+        }
+      },
+      {
+        "BoatType": 2,
+        "Length": {
+          "Value": 3,
+          "MeasurementUnit": 1
         }
       }
     ]
@@ -17,27 +26,35 @@
     "Name": "username1",
     "Ssn": "12345432",
     "Id": 2,
+    "NumberOfBoats": 0,
+    "hasBoats": false,
     "Boats": []
   },
   {
     "Name": "username2",
     "Ssn": "14324678",
     "Id": 3,
+    "NumberOfBoats": 0,
+    "hasBoats": false,
     "Boats": []
   },
   {
     "Name": "username3",
     "Ssn": "12434643",
     "Id": 4,
+    "NumberOfBoats": 0,
+    "hasBoats": false,
     "Boats": []
   },
   {
     "Name": "Test",
     "Ssn": "34234833",
     "Id": 5,
+    "NumberOfBoats": 1,
+    "hasBoats": true,
     "Boats": [
       {
-        "BoatType": 1,
+        "BoatType": 0,
         "Length": {
           "Value": 50,
           "MeasurementUnit": 0
