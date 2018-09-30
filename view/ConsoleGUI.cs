@@ -90,6 +90,49 @@ namespace _1dv607_w2.view
       Console.ReadKey();
     }
 
+    public void DisplayVerboseList(ICollection<model.Member> members)
+    {
+      Console.CursorVisible = false;
+      Console.Clear();
+
+      Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+
+      if (members.Count > 0)
+      {
+        Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
+        Console.WriteLine($"║  {"ID",-5}  |  {"Name",-24} |  {"Personal number",15}  ║");
+        Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
+        foreach (model.Member m in members)
+        {
+          Console.WriteLine("║---------------------------------------------------------║");
+          // Console.WriteLine("║_________________________________________________________║");
+          Console.WriteLine($"║  {"",-5}  |  {"",-24} |  {"",15}  ║");
+          Console.WriteLine($"║  {m.Id,-5}  |  {m.Name,-24} |  {m.Ssn,-15}  ║");
+
+          if (m.hasBoats)
+          {
+            Console.WriteLine("║---------------------------------------------------------║");
+            Console.WriteLine("║         |  Boats  |  Length         |  Type             ║");
+            Console.WriteLine("║---------------------------------------------------------║");
+
+            for (int i = 0; i < m.NumberOfBoats; i++)
+            {
+              Boat b = m.Boats[i];
+              Console.WriteLine($"║         |  {i + 1,-5}  |  {$"{b.Length.Value} {b.Length.MeasurementUnit}",-13}  |  {b.BoatType,-15}  ║");
+            }
+          }
+
+        }
+      }
+      else
+      {
+        DisplayNoMembers();
+      }
+      DisplayPressToGoBack();
+
+      Console.ReadKey();
+    }
+
     public int GetDeleteMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
     public int GetUpdateMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("update", members);
     public int GetBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
@@ -120,7 +163,7 @@ namespace _1dv607_w2.view
       int unitCount = (int)Measurement.Unit.Count;
 
       Console.CursorVisible = true;
-      //Console.Clear();
+      Console.Clear();
       Console.WriteLine(headline);
       Console.WriteLine("Please provide the required boat information.\n");
       Console.WriteLine($"Type of boat\n");

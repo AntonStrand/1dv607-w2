@@ -39,7 +39,10 @@ namespace _1dv607_w2.controller
           ListCompact();
           return true;
 
-        // case '5': return Action.ListVerbose;
+        case ConsoleGUI.Action.ListVerbose:
+          ListVerbose();
+          return true;
+
         case ConsoleGUI.Action.RegisterBoat:
           RegisterNewBoat();
           return true;
@@ -84,6 +87,7 @@ namespace _1dv607_w2.controller
     }
 
     private void ListCompact() => _view.DisplayCompactList(_members.GetMembers());
+    private void ListVerbose() => _view.DisplayVerboseList(_members.GetMembers());
 
     private void RegisterNewBoat()
     {

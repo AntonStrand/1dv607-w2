@@ -23,6 +23,7 @@ namespace _1dv607_w2.model
     public int Id { get => _id; }
 
     public int NumberOfBoats { get => _boats.Count; }
+    public bool hasBoats { get => NumberOfBoats > 0; }
 
     public List<Boat> Boats { get => _boats; set => _boats = value; }
 
