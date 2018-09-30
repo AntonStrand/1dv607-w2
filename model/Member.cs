@@ -22,6 +22,8 @@ namespace _1dv607_w2.model
     public string Ssn { get => _ssn; set => _ssn = value; }
     public int Id { get => _id; }
 
+    public int NumberOfBoats { get => _boats.Count; }
+
     public List<Boat> Boats { get => _boats; set => _boats = value; }
 
     public void AddBoat(Boat boat)

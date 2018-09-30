@@ -78,7 +78,7 @@ namespace _1dv607_w2.view
         foreach (model.Member m in members)
         {
           Console.WriteLine("║---------------------------------------------------------║");
-          Console.WriteLine($"║  {m.Id,-5}  |  {m.Name,-24} |  {"0",15}  ║");
+          Console.WriteLine($"║  {m.Id,-5}  |  {m.Name,-24} |  {m.NumberOfBoats,15}  ║");
         }
       }
       else
