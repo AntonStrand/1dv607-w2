@@ -51,6 +51,10 @@ namespace _1dv607_w2.controller
           RegisterNewBoat();
           return true;
 
+        case ConsoleGUI.Action.DeleteBoat:
+          DeleteBoat();
+          return true;
+
         case view.ConsoleGUI.Action.Quit:
           _members.SaveMembers();
           return false;
@@ -104,13 +108,27 @@ namespace _1dv607_w2.controller
 
     private void RegisterNewBoat()
     {
-      int index = _view.GetBoatOwnerIndex(_members.GetMembers());
+      int index = _view.GetNewBoatOwnerIndex(_members.GetMembers());
       if (index != -1)
       {
         BoatFormData boatData = _view.GetNewBoatInformation();
         if (boatData.isValid())
         {
           _members.AddBoatToMemberAt(index, boatData.Type, boatData.Length);
+        }
+      }
+    }
+
+    private void DeleteBoat()
+    {
+      int index = _view.GetDeleteBoatOwnerIndex(_members.GetMembers());
+      if (index != -1)
+      {
+        Member member = _members.GetMemberAt(index);
+        index = _view.GetBoatIndex(member);
+        if (index != -1)
+        {
+          _members.DeleteBoatAtFromMember(index, member);
         }
       }
     }

@@ -32,7 +32,16 @@ namespace _1dv607_w2.model
       _boats.Add(boat);
     }
 
-
-    public override string ToString() => $"{Name} {Ssn} {Id}";
+    public void DeleteBoatAt(int index)
+    {
+      if (index > 0 && index < NumberOfBoats)
+      {
+        _boats.RemoveAt(index);
+      }
+      else
+      {
+        throw new System.ArgumentOutOfRangeException($"{index} is not a valid index.");
+      }
+    }
   }
 }

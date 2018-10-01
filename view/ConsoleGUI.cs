@@ -19,6 +19,7 @@ namespace _1dv607_w2.view
       ListCompact,
       ListVerbose,
       RegisterBoat,
+      DeleteBoat,
       Quit,
       None,
     }
@@ -34,6 +35,7 @@ namespace _1dv607_w2.view
         case '5': return Action.ListCompact;
         case '6': return Action.ListVerbose;
         case '7': return Action.RegisterBoat;
+        case '8': return Action.DeleteBoat;
         case 'q': return Action.Quit;
         default: return Action.None;
       }
@@ -58,6 +60,7 @@ namespace _1dv607_w2.view
       Console.WriteLine("║      5. Show compact list                               ║");
       Console.WriteLine("║      6. Show verbose list                               ║");
       Console.WriteLine("║      7. Register new boat                               ║");
+      Console.WriteLine("║      8. Delete boat                                     ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
@@ -132,10 +135,53 @@ namespace _1dv607_w2.view
       Console.ReadKey();
     }
 
+    public int GetBoatIndex(Member member)
+    {
+      Console.CursorVisible = true;
+      Console.Clear();
+      if (member.hasBoats)
+      {
+        DisplayMemberData(member);
+        Console.Write("\nEnter the number associated boat: ");
+        string boatId = Console.ReadLine();
+        int index;
+
+        if (!int.TryParse(boatId, out index) || index < 1 || index > member.NumberOfBoats)
+        {
+          GetBoatIndex(member);
+        }
+
+        Console.Write($"\n\nIs this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
+        char answer = Console.ReadKey().KeyChar;
+
+        return answer == YES
+          ? (index - 1)
+          : answer == CANCEL
+            ? -1
+            : GetBoatIndex(member);
+
+      }
+      else
+      {
+        Console.CursorVisible = false;
+        Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+        Console.WriteLine("║                                                         ║");
+        Console.WriteLine("║         This member doesn't own any boats yet.          ║");
+        Console.WriteLine("║                                                         ║");
+        Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
+        Console.WriteLine("╔═════════════════════════════════════════════════════════╗");
+        DisplayPressToGoBack();
+
+        Console.ReadKey();
+        return -1;
+      }
+    }
+
     public int GetDeleteMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("delete", members);
     public int GetUpdateMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("update", members);
     public int GetViewMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("view", members);
-    public int GetBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
+    public int GetNewBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
+    public int GetDeleteBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("delete a boat from", members);
 
     private MemberFormData DisplayMemberForm(string headline)
     {
