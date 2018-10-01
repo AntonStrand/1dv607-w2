@@ -146,7 +146,7 @@ namespace _1dv607_w2.view
       if (member.hasBoats)
       {
         DisplayMemberData(member);
-        Console.Write("\nEnter the number associated boat: ");
+        Console.Write("\nEnter the number associated to the boat: ");
         string boatId = Console.ReadLine();
         int index;
 
