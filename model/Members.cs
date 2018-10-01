@@ -42,11 +42,7 @@ namespace _1dv607_w2.model
 
     public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
 
-    public void UpdateMemberBoatAt(int index, Member member, BoatFormData boatData)
-    {
-      if (boatData.IsValid()) member.UpdateBoatAt(index, boatData.Type, boatData.Length);
-    }
-
+    public void UpdateMemberBoatAt(int index, Member member, BoatFormData boatData) => member.UpdateBoatAt(index, boatData);
 
     public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 

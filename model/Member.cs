@@ -40,8 +40,10 @@ namespace _1dv607_w2.model
       _ssn = ssn;
     }
 
-    public void UpdateBoatAt(int index, BoatTypes.Type type, Measurement length) =>
-      _boats[validateIndex(index)].Update(type, length);
+    public void UpdateBoatAt(int index, BoatFormData boatData)
+    {
+      if (boatData.IsValid()) _boats[validateIndex(index)].Update(boatData.Type, boatData.Length);
+    }
 
     public int validateIndex(int index) => (index < 0 && index >= NumberOfBoats)
       ? throw new System.ArgumentOutOfRangeException($"{index} is not a valid index.")
