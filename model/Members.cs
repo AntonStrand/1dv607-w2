@@ -19,8 +19,10 @@ namespace _1dv607_w2.model
 
     public void AddMember(string name, string ssn) => _members.Add(new Member(name, ssn, GenerateMemberId()));
 
-    public void AddBoatToMemberAt(int index, Boat boat) => _members[validateIndex(index)].AddBoat(boat);
+    public void AddBoatToMemberAt(int index, BoatTypes.Type type, Measurement length) => _members[validateIndex(index)].AddBoat(new Boat(type, length));
+
     public void DeleteMemberAt(int index) => _members.RemoveAt(validateIndex(index));
+
     public Member GetMemberAt(int index) => _members[validateIndex(index)];
 
     public void UpdateMemberAt(int index, string name, string ssn)
