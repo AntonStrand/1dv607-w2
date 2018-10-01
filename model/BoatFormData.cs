@@ -14,7 +14,7 @@ namespace _1dv607_w2.model
       _length = length;
     }
 
-    public bool isValid() => _type != BoatTypes.Type.None && _length != null;
+    public bool IsValid() => _type != BoatTypes.Type.None && _length != null;
 
     public BoatTypes.Type Type { get => _type; }
     public Measurement Length { get => _length; }

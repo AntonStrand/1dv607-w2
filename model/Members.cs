@@ -23,7 +23,9 @@ namespace _1dv607_w2.model
 
     public void DeleteMemberAt(int index) => _members.RemoveAt(validateIndex(index));
 
-    public void DeleteBoatAtFromMember(int index, Member member) => member.DeleteBoatAt(index);
+    public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
+
+    public void UpdateMemberBoatAt(int index, Member member, BoatTypes.Type type, Measurement length) => member.UpdateBoatAt(index, type, length);
 
     public Member GetMemberAt(int index) => _members[validateIndex(index)];
 

@@ -20,6 +20,7 @@ namespace _1dv607_w2.view
       ListVerbose,
       RegisterBoat,
       DeleteBoat,
+      UpdateBoat,
       Quit,
       None,
     }
@@ -36,6 +37,7 @@ namespace _1dv607_w2.view
         case '6': return Action.ListVerbose;
         case '7': return Action.RegisterBoat;
         case '8': return Action.DeleteBoat;
+        case '9': return Action.UpdateBoat;
         case 'q': return Action.Quit;
         default: return Action.None;
       }
@@ -61,6 +63,7 @@ namespace _1dv607_w2.view
       Console.WriteLine("║      6. Show verbose list                               ║");
       Console.WriteLine("║      7. Register new boat                               ║");
       Console.WriteLine("║      8. Delete boat                                     ║");
+      Console.WriteLine("║      9. Update boat                                     ║");
       Console.WriteLine("║                                                         ║");
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
@@ -69,6 +72,7 @@ namespace _1dv607_w2.view
     public MemberFormData GetUpdateMemberIndex() => DisplayMemberForm("Update member");
 
     public BoatFormData GetNewBoatInformation() => GetBoatInformation("Add new boat");
+    public BoatFormData GetUpdatedBoatInformation() => GetBoatInformation("Update boat");
 
     public void DisplayCompactList(ICollection<model.Member> members)
     {

@@ -32,16 +32,13 @@ namespace _1dv607_w2.model
       _boats.Add(boat);
     }
 
-    public void DeleteBoatAt(int index)
-    {
-      if (index > 0 && index < NumberOfBoats)
-      {
-        _boats.RemoveAt(index);
-      }
-      else
-      {
-        throw new System.ArgumentOutOfRangeException($"{index} is not a valid index.");
-      }
-    }
+    public void DeleteBoatAt(int index) => _boats.RemoveAt(validateIndex(index));
+
+    public void UpdateBoatAt(int index, BoatTypes.Type type, Measurement length) =>
+      _boats[validateIndex(index)].update(type, length);
+
+    public int validateIndex(int index) => (index < 0 && index >= NumberOfBoats)
+      ? throw new System.ArgumentOutOfRangeException($"{index} is not a valid index.")
+      : index;
   }
 }
