@@ -17,24 +17,36 @@ namespace _1dv607_w2.model
 
     public void SaveMembers() => _fileSystem.SaveAsJSON(_members);
 
-    public void AddMember(string name, string ssn) => _members.Add(new Member(name, ssn, GenerateMemberId()));
+    public void AddMember(MemberFormData memberData)
+    {
+      if (memberData.IsValid())
+        _members.Add(new Member(memberData.Name, memberData.Ssn, GenerateMemberId()));
 
-    public void AddBoatToMemberAt(int index, BoatTypes.Type type, Measurement length) => _members[validateIndex(index)].AddBoat(new Boat(type, length));
+    }
 
     public void DeleteMemberAt(int index) => _members.RemoveAt(validateIndex(index));
 
-    public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
-
-    public void UpdateMemberBoatAt(int index, Member member, BoatTypes.Type type, Measurement length) => member.UpdateBoatAt(index, type, length);
-
     public Member GetMemberAt(int index) => _members[validateIndex(index)];
 
-    public void UpdateMemberAt(int index, string name, string ssn)
+    public void UpdateMemberAt(int index, MemberFormData memberData)
     {
-      index = validateIndex(index);
-      _members[index].Name = name;
-      _members[index].Ssn = ssn;
+      if (memberData.IsValid())
+        _members[validateIndex(index)].Update(memberData.Name, memberData.Ssn);
     }
+
+    public void AddBoatToMemberAt(int index, BoatFormData boatData)
+    {
+      if (boatData.IsValid())
+        _members[validateIndex(index)].AddBoat(new Boat(boatData.Type, boatData.Length));
+    }
+
+    public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
+
+    public void UpdateMemberBoatAt(int index, Member member, BoatFormData boatData)
+    {
+      if (boatData.IsValid()) member.UpdateBoatAt(index, boatData.Type, boatData.Length);
+    }
+
 
     public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 

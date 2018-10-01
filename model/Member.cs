@@ -18,8 +18,8 @@ namespace _1dv607_w2.model
       _boats = new List<Boat>();
     }
 
-    public string Name { get => _name; set => _name = value; }
-    public string Ssn { get => _ssn; set => _ssn = value; }
+    public string Name { get => _name; }
+    public string Ssn { get => _ssn; }
     public int Id { get => _id; }
 
     public int NumberOfBoats { get => _boats.Count; }
@@ -34,8 +34,14 @@ namespace _1dv607_w2.model
 
     public void DeleteBoatAt(int index) => _boats.RemoveAt(validateIndex(index));
 
+    public void Update(string name, string ssn)
+    {
+      _name = name;
+      _ssn = ssn;
+    }
+
     public void UpdateBoatAt(int index, BoatTypes.Type type, Measurement length) =>
-      _boats[validateIndex(index)].update(type, length);
+      _boats[validateIndex(index)].Update(type, length);
 
     public int validateIndex(int index) => (index < 0 && index >= NumberOfBoats)
       ? throw new System.ArgumentOutOfRangeException($"{index} is not a valid index.")

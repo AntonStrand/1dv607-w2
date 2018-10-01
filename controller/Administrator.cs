@@ -66,44 +66,24 @@ namespace _1dv607_w2.controller
       }
     }
 
-    private void AddNewMember()
-    {
-      MemberFormData newMemberData = _view.DisplayAddMember();
-      if (newMemberData.IsValid())
-      {
-        _members.AddMember(newMemberData.Name, newMemberData.Ssn);
-      }
-    }
+    private void AddNewMember() => _members.AddMember(_view.DisplayAddMember());
 
     private void DeleteMember()
     {
       int index = _view.GetDeleteMemberIndex(_members.GetMembers());
-      if (index != -1)
-      {
-        _members.DeleteMemberAt(index);
-      }
+      if (index != -1) _members.DeleteMemberAt(index);
     }
 
     private void ViewMember()
     {
       int index = _view.GetViewMemberIndex(_members.GetMembers());
-      if (index != -1)
-      {
-        _view.DisplayMember(_members.GetMemberAt(index));
-      }
+      if (index != -1) _view.DisplayMember(_members.GetMemberAt(index));
     }
 
     private void UpdateMember()
     {
       int index = _view.GetUpdateMemberIndex(_members.GetMembers());
-      if (index != -1)
-      {
-        MemberFormData newMemberData = _view.GetUpdateMemberIndex();
-        if (newMemberData.IsValid())
-        {
-          _members.UpdateMemberAt(index, newMemberData.Name, newMemberData.Ssn);
-        }
-      }
+      if (index != -1) _members.UpdateMemberAt(index, _view.GetUpdateMemberInformation());
     }
 
     private void ListCompact() => _view.DisplayCompactList(_members.GetMembers());
@@ -112,14 +92,7 @@ namespace _1dv607_w2.controller
     private void RegisterNewBoat()
     {
       int index = _view.GetNewBoatOwnerIndex(_members.GetMembers());
-      if (index != -1)
-      {
-        BoatFormData boatData = _view.GetNewBoatInformation();
-        if (boatData.IsValid())
-        {
-          _members.AddBoatToMemberAt(index, boatData.Type, boatData.Length);
-        }
-      }
+      if (index != -1) _members.AddBoatToMemberAt(index, _view.GetNewBoatInformation());
     }
 
     private void DeleteBoat()
@@ -146,10 +119,7 @@ namespace _1dv607_w2.controller
         if (index != -1)
         {
           BoatFormData boatData = _view.GetUpdatedBoatInformation();
-          if (boatData.IsValid())
-          {
-            _members.UpdateMemberBoatAt(index, member, boatData.Type, boatData.Length);
-          }
+          _members.UpdateMemberBoatAt(index, member, boatData);
         }
       }
     }

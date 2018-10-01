@@ -69,7 +69,7 @@ namespace _1dv607_w2.view
     }
 
     public MemberFormData DisplayAddMember() => DisplayMemberForm("Add member");
-    public MemberFormData GetUpdateMemberIndex() => DisplayMemberForm("Update member");
+    public MemberFormData GetUpdateMemberInformation() => DisplayMemberForm("Update member");
 
     public BoatFormData GetNewBoatInformation() => GetBoatInformation("Add new boat");
     public BoatFormData GetUpdatedBoatInformation() => GetBoatInformation("Update boat");

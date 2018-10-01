@@ -14,7 +14,7 @@ namespace _1dv607_w2.model
     public BoatTypes.Type Type { get => _type; set => _type = value; }
     public Measurement Length { get => _length; }
 
-    public void update(BoatTypes.Type type, Measurement length)
+    public void Update(BoatTypes.Type type, Measurement length)
     {
       Type = type;
       _length = length;
