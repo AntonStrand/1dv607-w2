@@ -2,8 +2,8 @@ namespace _1dv607_w2.model
 {
   class Boat
   {
-    protected BoatTypes.Type _type;
-    protected Measurement _length;
+    private BoatTypes.Type _type;
+    private Measurement _length;
 
     public Boat(BoatTypes.Type type, Measurement length)
     {
