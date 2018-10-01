@@ -4,7 +4,7 @@ using _1dv607_w2.model;
 
 namespace _1dv607_w2.view
 {
-  class ConsoleGUI
+  class ConsoleUI
   {
     private const char YES = 'y';
     private const char NO = 'n';

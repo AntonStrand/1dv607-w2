@@ -13,7 +13,7 @@ namespace _1dv607_w2
       string pathToJson = "members.json";
       model.FileSystem fs = new model.FileSystem(pathToJson);
       model.Members m = new model.Members(fs);
-      view.ConsoleGUI v = new view.ConsoleGUI();
+      view.ConsoleUI v = new view.ConsoleUI();
       controller.Administrator c = new controller.Administrator(v, m);
       while (c.run()) ;
     }
