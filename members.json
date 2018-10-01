@@ -3,16 +3,9 @@
     "Name": "username",
     "Ssn": "12345678",
     "Id": 1,
-    "NumberOfBoats": 2,
+    "NumberOfBoats": 1,
     "hasBoats": true,
     "Boats": [
-      {
-        "Type": 0,
-        "Length": {
-          "Value": 12,
-          "MeasurementUnit": 0
-        }
-      },
       {
         "Type": 2,
         "Length": {
