@@ -1,22 +1,22 @@
 title List Verbose list
   
-Main->FileSystem: Create(path:String)
-Main->Members: Create(FileSystem)
-Members->FileSystem: LoadMembers()
-Main->Administrator: Create(ConsoleUI, Members)
-Main->Administrator: Run()
-Administrator->ConsoleUI: DisplayActionMenu()
-Administrator->ConsoleUI: GetAction()
-ConsoleUI-->Administrator: Action.ListVerbose
-Administrator->Administrator: ListVerbose()
-Administrator->Members: GetMembers()
-Members-->Administrator: ReadOnlyCollection<Member>
-Administrator->ConsoleUI: DisplayVerboseList(members:ReadOnlyCollection<Member>)
+Program->model.FileSystem: Create(path:String)
+Program->model.Members: Create(FileSystem)
+model.Members->model.FileSystem: LoadMembers()
+Program->controller.Administrator: Create(ConsoleUI, Members)
+Program->controller.Administrator: Run()
+controller.Administrator->view.ConsoleUI: DisplayActionMenu()
+controller.Administrator->view.ConsoleUI: GetAction()
+view.ConsoleUI-->controller.Administrator: Action.ListVerbose
+controller.Administrator->controller.Administrator: ListVerbose()
+controller.Administrator->model.Members: GetMembers()
+model.Members-->controller.Administrator: ReadOnlyCollection<Member>
+controller.Administrator->view.ConsoleUI: DisplayVerboseList(members:ReadOnlyCollection<Member>)
 
 alt members contains members
     loop for each member
-    ConsoleUI->ConsoleUI: DisplayMemberData(Member)
+    view.ConsoleUI->view.ConsoleUI: DisplayMemberData(Member)
 end
 else there is no members
-    ConsoleUI->ConsoleUI: DisplayNoMembers()
+    view.ConsoleUI->view.ConsoleUI: DisplayNoMembers()
 end
