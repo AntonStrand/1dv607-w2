@@ -1,0 +1,22 @@
+title List Verbose list
+  
+Main->FileSystem: Create(path:String)
+Main->Members: Create(FileSystem)
+Members->FileSystem: LoadMembers()
+Main->Administrator: Create(ConsoleUI, Members)
+Main->Administrator: Run()
+Administrator->ConsoleUI: DisplayActionMenu()
+Administrator->ConsoleUI: GetAction()
+ConsoleUI-->Administrator: Action.ListVerbose
+Administrator->Administrator: ListVerbose()
+Administrator->Members: GetMembers()
+Members-->Administrator: ReadOnlyCollection<Member>
+Administrator->ConsoleUI: DisplayVerboseList(members:ReadOnlyCollection<Member>)
+
+alt members contains members
+    loop for each member
+    ConsoleUI->ConsoleUI: DisplayMemberData(Member)
+end
+else there is no members
+    ConsoleUI->ConsoleUI: DisplayNoMembers()
+end

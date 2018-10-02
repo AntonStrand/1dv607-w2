@@ -1,0 +1,14 @@
+title Add new member
+  
+Main->Administrator: Create(ConsoleUI, Members)
+Main->Administrator: Run()
+Administrator->ConsoleUI: GetAction()
+ConsoleUI-->Administrator: Action.Add
+Administrator->Administrator: AddNewMember()
+Administrator->ConsoleUI: DisplayAddMember()
+ConsoleUI->ConsoleUI: DisplayMemberForm("Add member")
+ConsoleUI->MemberFormData: Create()
+ConsoleUI-->Administrator: MemberFormData
+Administrator->Members: AddMember(mFD:MemberFormData)
+Members->Members: GenerateMemberId()
+Members->Member: Create(mFD.Name, mFD.Ssn, memberId)
