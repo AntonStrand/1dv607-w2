@@ -7,6 +7,8 @@ URL to application https://ufile.io/a3rhs
 
 Click on `1dv607-w2` to run the application.
 
+## Run locally
 
+Move to `src` in your terminal and write `dotnet run` if you have dotnet installed.
 
 
