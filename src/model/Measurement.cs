@@ -23,7 +23,7 @@ namespace _1dv607_w2.model
     {
       get => _value;
       set => _value = value <= 0
-        ? throw new System.ArgumentOutOfRangeException($"The length has to be more than 0")
+        ? throw new System.ArgumentOutOfRangeException($"The value has to be more than 0")
         : value;
     }
 
