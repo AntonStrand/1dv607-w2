@@ -66,7 +66,15 @@ namespace _1dv607_w2.controller
       }
     }
 
-    private void AddNewMember() => _members.AddMember(_view.DisplayAddMember());
+    private void AddNewMember()
+    {
+      Member member = _view.DisplayAddMember();
+
+      if (member != null)
+      {
+        _members.AddMember(member);
+      }
+    }
 
     private void DeleteMember()
     {
@@ -83,7 +91,14 @@ namespace _1dv607_w2.controller
     private void UpdateMember()
     {
       int index = _view.GetUpdateMemberIndex(_members.GetMembers());
-      if (index != -1) _members.UpdateMemberAt(index, _view.GetUpdateMemberInformation());
+      if (index != -1)
+      {
+        Member member = _view.GetUpdateMemberInformation();
+        if (member != null)
+        {
+          _members.UpdateMemberAt(index, member);
+        }
+      }
     }
 
     private void ListCompact() => _view.DisplayCompactList(_members.GetMembers());
