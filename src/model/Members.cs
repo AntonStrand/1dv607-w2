@@ -17,21 +17,19 @@ namespace _1dv607_w2.model
 
     public void SaveMembers() => _fileSystem.SaveAsJSON(_members);
 
-    public void AddMember(MemberFormData memberData)
+    public void AddMember(Member member)
     {
-      if (memberData.IsValid())
-        _members.Add(new Member(memberData.Name, memberData.Ssn, GenerateMemberId()));
-
+      member.Id = GenerateMemberId();
+      _members.Add(member);
     }
 
     public void DeleteMemberAt(int index) => _members.RemoveAt(validateIndex(index));
 
     public Member GetMemberAt(int index) => _members[validateIndex(index)];
 
-    public void UpdateMemberAt(int index, MemberFormData memberData)
+    public void UpdateMemberAt(int index, Member memberData)
     {
-      if (memberData.IsValid())
-        _members[validateIndex(index)].Update(memberData.Name, memberData.Ssn);
+      _members[validateIndex(index)].Update(memberData.Name, memberData.Ssn);
     }
 
     public void AddBoatToMemberAt(int index, BoatFormData boatData)

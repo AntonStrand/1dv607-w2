@@ -6,21 +6,20 @@ namespace _1dv607_w2.model
   {
     private string _name;
     private string _ssn;
-    private int _id;
+    private int? _id;
 
     private List<Boat> _boats;
 
-    public Member(string name, string ssn, int id)
+    public Member(string name, string ssn)
     {
       _name = name;
       _ssn = ssn;
-      _id = id;
       _boats = new List<Boat>();
     }
 
     public string Name { get => _name; }
     public string Ssn { get => _ssn; }
-    public int Id { get => _id; }
+    public int Id { get => _id.Value; set => _id = _id.HasValue ? _id : value; }
 
     public int NumberOfBoats { get => _boats.Count; }
     public bool hasBoats { get => NumberOfBoats > 0; }

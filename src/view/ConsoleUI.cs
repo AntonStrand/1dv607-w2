@@ -68,8 +68,8 @@ namespace _1dv607_w2.view
       Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
     }
 
-    public MemberFormData DisplayAddMember() => DisplayMemberForm("Add member");
-    public MemberFormData GetUpdateMemberInformation() => DisplayMemberForm("Update member");
+    public Member DisplayAddMember() => DisplayMemberForm("Add member");
+    public Member GetUpdateMemberInformation() => DisplayMemberForm("Update member");
 
     public BoatFormData GetNewBoatInformation() => GetBoatInformation("Add new boat");
     public BoatFormData GetUpdatedBoatInformation() => GetBoatInformation("Update boat");
@@ -187,7 +187,7 @@ namespace _1dv607_w2.view
     public int GetNewBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
     public int GetDeleteBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("delete a boat from", members);
 
-    private MemberFormData DisplayMemberForm(string headline)
+    private Member DisplayMemberForm(string headline)
     {
       Console.CursorVisible = true;
       Console.Clear();
@@ -201,9 +201,9 @@ namespace _1dv607_w2.view
       char answer = Console.ReadKey().KeyChar;
 
       return answer == YES
-        ? new MemberFormData(name, ssn)
+        ? new Member(name, ssn)
         : answer == CANCEL
-          ? new MemberFormData()
+          ? null
           : DisplayMemberForm(headline);
     }
 
