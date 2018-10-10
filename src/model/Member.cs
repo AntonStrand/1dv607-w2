@@ -39,9 +39,10 @@ namespace _1dv607_w2.model
       _ssn = ssn;
     }
 
-    public void UpdateBoatAt(int index, BoatFormData boatData)
+    public void UpdateBoatAt(int index, Boat boatData)
     {
-      if (boatData.IsValid()) _boats[validateIndex(index)].Update(boatData.Type, boatData.Length);
+      if (boatData != null) _boats[validateIndex(index)].Update(boatData.Type, boatData.Length);
+      else throw new System.NullReferenceException("The Boat can't be null");
     }
 
     public int validateIndex(int index) => (index < 0 && index >= NumberOfBoats)
