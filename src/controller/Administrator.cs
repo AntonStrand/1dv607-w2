@@ -6,10 +6,10 @@ namespace _1dv607_w2.controller
 {
   class Administrator
   {
-    ConsoleUI _view;
+    IView _view;
     Members _members;
 
-    public Administrator(ConsoleUI v, Members members)
+    public Administrator(IView v, Members members)
     {
       _view = v;
       _members = members;
@@ -17,48 +17,48 @@ namespace _1dv607_w2.controller
 
     public bool run()
     {
-      _view.DisplayActionMenu();
+      _view.DisplayMenu();
 
-      ConsoleUI.Action action = _view.GetAction();
+      MenuSelection.Action action = _view.GetAction();
 
       switch (action)
       {
-        case ConsoleUI.Action.Add:
+        case MenuSelection.Action.Add:
           AddNewMember();
           return true;
 
-        case ConsoleUI.Action.Update:
+        case MenuSelection.Action.Update:
           UpdateMember();
           return true;
 
-        case ConsoleUI.Action.Delete:
+        case MenuSelection.Action.Delete:
           DeleteMember();
           return true;
 
-        case ConsoleUI.Action.ViewMember:
+        case MenuSelection.Action.ViewMember:
           ViewMember();
           return true;
 
-        case ConsoleUI.Action.ListCompact:
+        case MenuSelection.Action.ListCompact:
           ListCompact();
           return true;
 
-        case ConsoleUI.Action.ListVerbose:
+        case MenuSelection.Action.ListVerbose:
           ListVerbose();
           return true;
 
-        case ConsoleUI.Action.RegisterBoat:
+        case MenuSelection.Action.RegisterBoat:
           RegisterNewBoat();
           return true;
 
-        case ConsoleUI.Action.DeleteBoat:
+        case MenuSelection.Action.DeleteBoat:
           DeleteBoat();
           return true;
-        case ConsoleUI.Action.UpdateBoat:
+        case MenuSelection.Action.UpdateBoat:
           UpdateBoat();
           return true;
 
-        case view.ConsoleUI.Action.Quit:
+        case MenuSelection.Action.Quit:
           _members.SaveMembers();
           return false;
 
