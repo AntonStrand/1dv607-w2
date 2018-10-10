@@ -71,8 +71,8 @@ namespace _1dv607_w2.view
     public Member DisplayAddMember() => DisplayMemberForm("Add member");
     public Member GetUpdateMemberInformation() => DisplayMemberForm("Update member");
 
-    public BoatFormData GetNewBoatInformation() => GetBoatInformation("Add new boat");
-    public BoatFormData GetUpdatedBoatInformation() => GetBoatInformation("Update boat");
+    public Boat GetNewBoatInformation() => GetBoatInformation("Add new boat");
+    public Boat GetUpdatedBoatInformation() => GetBoatInformation("Update boat");
 
     public void DisplayCompactList(ICollection<model.Member> members)
     {
@@ -207,7 +207,7 @@ namespace _1dv607_w2.view
           : DisplayMemberForm(headline);
     }
 
-    private BoatFormData GetBoatInformation(string headline)
+    private Boat GetBoatInformation(string headline)
     {
       int typeCount = (int)BoatTypes.Type.Count;
       int unitCount = (int)Measurement.Unit.Count;
@@ -228,7 +228,7 @@ namespace _1dv607_w2.view
       int typeIndex;
       if (!int.TryParse(typeId, out typeIndex) || typeIndex < 1 || typeIndex > typeCount)
       {
-        GetBoatInformation(headline);
+        return GetBoatInformation(headline);
       }
 
       Console.WriteLine($"\n\nSelect measurement unit\n");
@@ -244,7 +244,7 @@ namespace _1dv607_w2.view
       int unitIndex;
       if (!int.TryParse(unitId, out unitIndex) || unitIndex < 1 || unitIndex > unitCount)
       {
-        GetBoatInformation(headline);
+        return GetBoatInformation(headline);
       }
 
       Console.Write($"\n\nLength in {(Measurement.Unit)(unitIndex - 1)}: ");
@@ -253,7 +253,7 @@ namespace _1dv607_w2.view
       int length;
       if (!int.TryParse(lengthStr, out length) || length < 1)
       {
-        GetBoatInformation(headline);
+        return GetBoatInformation(headline);
       }
 
       Console.Write($"\n\nIs this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
@@ -263,9 +263,9 @@ namespace _1dv607_w2.view
       unitIndex -= 1;
 
       return answer == YES
-        ? new BoatFormData((BoatTypes.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
+        ? new Boat((BoatTypes.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
         : answer == CANCEL
-          ? new BoatFormData()
+          ? null
           : GetBoatInformation(headline);
     }
 
