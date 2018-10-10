@@ -7,7 +7,6 @@ namespace _1dv607_w2.model
       Feet,
       Meter,
       Count,
-      None
     }
 
     private Unit _unit;
