@@ -120,7 +120,7 @@ namespace _1dv607_w2.controller
 
     private void UpdateBoat()
     {
-      int index = _view.GetDeleteBoatOwnerIndex(_members.GetMembers());
+      int index = _view.GetUpdateBoatOwnerIndex(_members.GetMembers());
       if (index != -1)
       {
         Member member = _members.GetMemberAt(index);
