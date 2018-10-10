@@ -19,28 +19,29 @@ namespace _1dv607_w2.model
 
     public void AddMember(Member member)
     {
+      NullCheck<Member>(member);
       member.Id = GenerateMemberId();
       _members.Add(member);
     }
 
-    public void DeleteMemberAt(int index) => _members.RemoveAt(validateIndex(index));
+    public void DeleteMemberAt(int index) => _members.RemoveAt(ValidateIndex(index));
 
-    public Member GetMemberAt(int index) => _members[validateIndex(index)];
+    public Member GetMemberAt(int index) => _members[ValidateIndex(index)];
 
     public void UpdateMemberAt(int index, Member memberData)
     {
-      _members[validateIndex(index)].Update(memberData.Name, memberData.Ssn);
+      NullCheck<Member>(memberData);
+      _members[ValidateIndex(index)].Update(memberData.Name, memberData.Ssn);
     }
 
-    public void AddBoatToMemberAt(int index, BoatFormData boatData)
+    public void AddBoatToMemberAt(int index, Boat boat)
     {
-      if (boatData.IsValid())
-        _members[validateIndex(index)].AddBoat(new Boat(boatData.Type, boatData.Length));
+      _members[ValidateIndex(index)].AddBoat(NullCheck<Boat>(boat));
     }
 
     public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
 
-    public void UpdateMemberBoatAt(int index, Member member, BoatFormData boatData) => member.UpdateBoatAt(index, boatData);
+    public void UpdateMemberBoatAt(int index, Member member, Boat boatData) => member.UpdateBoatAt(index, boatData);
 
     public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 
@@ -50,8 +51,12 @@ namespace _1dv607_w2.model
 
 
     /// Throws an <see cref="ArgumentOutOfRangeException"/> if the index is out of range otherwise it will return the index.
-    private int validateIndex(int index) => (index < 0 || index >= _members.Count)
+    private int ValidateIndex(int index) => (index < 0 || index >= _members.Count)
         ? throw new ArgumentOutOfRangeException($"{index} is not a valid index.")
         : index;
+
+    private T NullCheck<T>(T tester) => tester == null
+      ? throw new System.NullReferenceException("This argument can't be null")
+      : tester;
   }
 }
