@@ -69,11 +69,7 @@ namespace _1dv607_w2.controller
     private void AddNewMember()
     {
       Member member = _view.DisplayAddMember();
-
-      if (member != null)
-      {
-        _members.AddMember(member);
-      }
+      if (member != null) _members.AddMember(member);
     }
 
     private void DeleteMember()
@@ -94,10 +90,7 @@ namespace _1dv607_w2.controller
       if (index != -1)
       {
         Member member = _view.GetUpdateMemberInformation();
-        if (member != null)
-        {
-          _members.UpdateMemberAt(index, member);
-        }
+        if (member != null) _members.UpdateMemberAt(index, member);
       }
     }
 
@@ -107,7 +100,11 @@ namespace _1dv607_w2.controller
     private void RegisterNewBoat()
     {
       int index = _view.GetNewBoatOwnerIndex(_members.GetMembers());
-      if (index != -1) _members.AddBoatToMemberAt(index, _view.GetNewBoatInformation());
+      if (index != -1)
+      {
+        Boat boat = _view.GetNewBoatInformation();
+        if (boat != null) _members.AddBoatToMemberAt(index, boat);
+      }
     }
 
     private void DeleteBoat()
@@ -117,10 +114,7 @@ namespace _1dv607_w2.controller
       {
         Member member = _members.GetMemberAt(index);
         index = _view.GetBoatIndex(member);
-        if (index != -1)
-        {
-          _members.DeleteMemberBoatAt(index, member);
-        }
+        if (index != -1) _members.DeleteMemberBoatAt(index, member);
       }
     }
 
@@ -133,8 +127,8 @@ namespace _1dv607_w2.controller
         index = _view.GetBoatIndex(member);
         if (index != -1)
         {
-          BoatFormData boatData = _view.GetUpdatedBoatInformation();
-          _members.UpdateMemberBoatAt(index, member, boatData);
+          Boat boatData = _view.GetUpdatedBoatInformation();
+          if (boatData != null) _members.UpdateMemberBoatAt(index, member, boatData);
         }
       }
     }
