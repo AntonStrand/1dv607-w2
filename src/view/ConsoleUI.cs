@@ -186,6 +186,7 @@ namespace _1dv607_w2.view
     public int GetViewMemberIndex(ICollection<model.Member> members) => DisplayChooseMember("view", members);
     public int GetNewBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("register a boat to", members);
     public int GetDeleteBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("delete a boat from", members);
+    public int GetUpdateBoatOwnerIndex(ICollection<model.Member> members) => DisplayChooseMember("update a boat for", members);
 
     private Member DisplayMemberForm(string headline)
     {
@@ -209,7 +210,7 @@ namespace _1dv607_w2.view
 
     private Boat GetBoatInformation(string headline)
     {
-      int typeCount = (int)BoatTypes.Type.Count;
+      int typeCount = (int)Boat.Types.Count;
       int unitCount = (int)Measurement.Unit.Count;
 
       Console.CursorVisible = true;
@@ -220,7 +221,7 @@ namespace _1dv607_w2.view
 
       for (int type = 0; type < typeCount; type++)
       {
-        Console.WriteLine($"  {type + 1}. {(BoatTypes.Type)type}");
+        Console.WriteLine($"  {type + 1}. {(Boat.Types)type}");
       }
 
       Console.Write($"\nNumber (1-{typeCount}): ");
@@ -259,11 +260,11 @@ namespace _1dv607_w2.view
       Console.Write($"\n\nIs this information correct ({YES}/{NO}) or {CANCEL} to cancel: ");
       char answer = Console.ReadKey().KeyChar;
 
-      typeIndex -= 1;
-      unitIndex -= 1;
+      Boat.Types boatType = (Boat.Types)typeIndex - 1;
+      Measurement.Unit lengthUnit = (Measurement.Unit)unitIndex - 1;
 
       return answer == YES
-        ? new Boat((BoatTypes.Type)typeIndex, new Measurement(length, (Measurement.Unit)unitIndex))
+        ? new Boat(boatType, new Measurement(length, lengthUnit))
         : answer == CANCEL
           ? null
           : GetBoatInformation(headline);
@@ -291,7 +292,7 @@ namespace _1dv607_w2.view
         Console.WriteLine("║---------------------------------------------------------║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("║    Type in the number of the member you want to         ║");
-        Console.WriteLine($"║    {$"{action} or Press {CANCEL} to cancel",-49}    ║");
+        Console.WriteLine($"║    {$"{action} or press {CANCEL} to cancel",-49}    ║");
         Console.WriteLine("║                                                         ║");
         Console.WriteLine("╚═════════════════════════════════════════════════════════╝");
         string command = Console.ReadLine();
