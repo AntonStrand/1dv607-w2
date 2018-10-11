@@ -2,7 +2,7 @@ namespace _1dv607_w2.model
 {
   class Boat
   {
-    public enum Types
+    public enum BoatType
     {
       Sailboat,
       Motorsailer,
@@ -10,19 +10,19 @@ namespace _1dv607_w2.model
       Other,
       Count
     }
-    private Types _type;
+    private BoatType _type;
     private Measurement _length;
 
-    public Boat(Types type, Measurement length)
+    public Boat(BoatType type, Measurement length)
     {
       _type = type;
       _length = length;
     }
 
-    public Types Type { get => _type; set => _type = value; }
+    public BoatType Type { get => _type; set => _type = value; }
     public Measurement Length { get => _length; }
 
-    public void Update(Types type, Measurement length)
+    public void Update(BoatType type, Measurement length)
     {
       Type = type;
       _length = length;

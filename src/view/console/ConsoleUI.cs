@@ -211,7 +211,7 @@ namespace _1dv607_w2.view.console
 
     private Boat GetBoatInformation(string headline)
     {
-      int typeCount = (int)Boat.Types.Count;
+      int typeCount = (int)Boat.BoatType.Count;
       int unitCount = (int)Measurement.Unit.Count;
 
       Console.CursorVisible = true;
@@ -222,7 +222,7 @@ namespace _1dv607_w2.view.console
 
       for (int type = 0; type < typeCount; type++)
       {
-        Console.WriteLine($"  {type + 1}. {(Boat.Types)type}");
+        Console.WriteLine($"  {type + 1}. {(Boat.BoatType)type}");
       }
 
       Console.Write($"\nNumber (1-{typeCount}): ");
@@ -259,7 +259,7 @@ namespace _1dv607_w2.view.console
       }
 
       char answer = GetConfirmation();
-      Boat.Types boatType = (Boat.Types)typeIndex - 1;
+      Boat.BoatType boatType = (Boat.BoatType)typeIndex - 1;
       Measurement.Unit lengthUnit = (Measurement.Unit)unitIndex - 1;
 
       return answer == YES
