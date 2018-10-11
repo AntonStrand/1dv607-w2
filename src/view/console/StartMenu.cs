@@ -4,21 +4,21 @@ namespace _1dv607_w2.view.console
 {
   class StartMenu
   {
-    public MenuSelection.Action GetAction()
+    public MenuAction GetAction()
     {
       switch (Console.ReadKey().KeyChar)
       {
-        case '1': return MenuSelection.Action.Add;
-        case '2': return MenuSelection.Action.Update;
-        case '3': return MenuSelection.Action.Delete;
-        case '4': return MenuSelection.Action.ViewMember;
-        case '5': return MenuSelection.Action.ListCompact;
-        case '6': return MenuSelection.Action.ListVerbose;
-        case '7': return MenuSelection.Action.RegisterBoat;
-        case '8': return MenuSelection.Action.DeleteBoat;
-        case '9': return MenuSelection.Action.UpdateBoat;
-        case 'q': return MenuSelection.Action.Quit;
-        default: return MenuSelection.Action.None;
+        case '1': return MenuAction.Add;
+        case '2': return MenuAction.Update;
+        case '3': return MenuAction.Delete;
+        case '4': return MenuAction.ViewMember;
+        case '5': return MenuAction.ListCompact;
+        case '6': return MenuAction.ListVerbose;
+        case '7': return MenuAction.RegisterBoat;
+        case '8': return MenuAction.DeleteBoat;
+        case '9': return MenuAction.UpdateBoat;
+        case 'q': return MenuAction.Quit;
+        default: return MenuAction.None;
       }
     }
 

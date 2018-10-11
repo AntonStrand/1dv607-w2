@@ -6,7 +6,7 @@ namespace _1dv607_w2.view
   interface IView
   {
     void DisplayMenu();
-    MenuSelection.Action GetAction();
+    MenuAction GetAction();
     Member DisplayAddMember();
     Member GetUpdateMemberInformation();
     Boat GetNewBoatInformation();

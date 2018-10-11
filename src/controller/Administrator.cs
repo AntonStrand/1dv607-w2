@@ -19,46 +19,46 @@ namespace _1dv607_w2.controller
     {
       _view.DisplayMenu();
 
-      MenuSelection.Action action = _view.GetAction();
+      MenuAction action = _view.GetAction();
 
       switch (action)
       {
-        case MenuSelection.Action.Add:
+        case MenuAction.Add:
           AddNewMember();
           return true;
 
-        case MenuSelection.Action.Update:
+        case MenuAction.Update:
           UpdateMember();
           return true;
 
-        case MenuSelection.Action.Delete:
+        case MenuAction.Delete:
           DeleteMember();
           return true;
 
-        case MenuSelection.Action.ViewMember:
+        case MenuAction.ViewMember:
           ViewMember();
           return true;
 
-        case MenuSelection.Action.ListCompact:
+        case MenuAction.ListCompact:
           ListCompact();
           return true;
 
-        case MenuSelection.Action.ListVerbose:
+        case MenuAction.ListVerbose:
           ListVerbose();
           return true;
 
-        case MenuSelection.Action.RegisterBoat:
+        case MenuAction.RegisterBoat:
           RegisterNewBoat();
           return true;
 
-        case MenuSelection.Action.DeleteBoat:
+        case MenuAction.DeleteBoat:
           DeleteBoat();
           return true;
-        case MenuSelection.Action.UpdateBoat:
+        case MenuAction.UpdateBoat:
           UpdateBoat();
           return true;
 
-        case MenuSelection.Action.Quit:
+        case MenuAction.Quit:
           _members.SaveMembers();
           return false;
 
