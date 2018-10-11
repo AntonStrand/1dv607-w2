@@ -34,14 +34,14 @@ namespace _1dv607_w2.model
       _members[ValidateIndex(index)].Update(memberData.Name, memberData.Ssn);
     }
 
-    public void AddBoatToMemberAt(int index, Boat boat)
-    {
+    public void AddBoatToMemberAt(int index, Boat boat) =>
       _members[ValidateIndex(index)].AddBoat(NullCheck<Boat>(boat));
-    }
 
-    public void DeleteMemberBoatAt(int index, Member member) => member.DeleteBoatAt(index);
+    public void DeleteMemberBoatAt(int index, Member member) =>
+      member.DeleteBoatAt(index);
 
-    public void UpdateMemberBoatAt(int index, Member member, Boat boatData) => member.UpdateBoatAt(index, boatData);
+    public void UpdateMemberBoatAt(int index, Member member, Boat boatData) =>
+      member.UpdateBoatAt(index, boatData);
 
     public ReadOnlyCollection<Member> GetMembers() => new ReadOnlyCollection<Member>(_members);
 
@@ -52,9 +52,10 @@ namespace _1dv607_w2.model
 
     /// Throws an <see cref="ArgumentOutOfRangeException"/> if the index is out of range otherwise it will return the index.
     private int ValidateIndex(int index) => (index < 0 || index >= _members.Count)
-        ? throw new ArgumentOutOfRangeException($"{index} is not a valid index.")
-        : index;
+      ? throw new ArgumentOutOfRangeException($"{index} is not a valid index.")
+      : index;
 
+    /// Throws an <see cref="NullReferenceException"/> if the test object is null otherwise it will return the test object.
     private T NullCheck<T>(T tester) => tester == null
       ? throw new System.NullReferenceException("This argument can't be null")
       : tester;

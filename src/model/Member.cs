@@ -19,7 +19,13 @@ namespace _1dv607_w2.model
 
     public string Name { get => _name; }
     public string Ssn { get => _ssn; }
-    public int Id { get => _id.Value; set => _id = _id.HasValue ? _id : value; }
+    public int Id
+    {
+      get => _id.HasValue ? _id.Value : 0;
+      set => _id = _id.HasValue
+        ? throw new System.ArgumentException("The id can only be set once.")
+        : value;
+    }
 
     public int NumberOfBoats { get => _boats.Count; }
     public bool hasBoats { get => NumberOfBoats > 0; }
