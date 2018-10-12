@@ -1,14 +1,18 @@
 title Add new member
   
-Program->controller.Administrator: Create(ConsoleUI, Members)
+Program->+controller.Administrator: c = Create(ConsoleUI, Members)
 Program->controller.Administrator: Run()
-controller.Administrator->view.ConsoleUI: GetAction()
-view.ConsoleUI-->controller.Administrator: Action.Add
+controller.Administrator->+view.console.ConsoleUI: DisplayMenu()
+view.console.ConsoleUI->-view.StartMenu: DisplayMenu()
+controller.Administrator->+view.console.ConsoleUI: GetAction()
+view.console.ConsoleUI->+view.StartMenu: GetAction()
+view.StartMenu-->-view.console.ConsoleUI: MenuAction.Add
+view.console.ConsoleUI-->-controller.Administrator: MenuAction.Add
 controller.Administrator->controller.Administrator: AddNewMember()
-controller.Administrator->view.ConsoleUI: DisplayAddMember()
-view.ConsoleUI->view.ConsoleUI: DisplayMemberForm("Add member")
-view.ConsoleUI->model.MemberFormData: Create()
-view.ConsoleUI-->controller.Administrator: MemberFormData
-controller.Administrator->model.Members: AddMember(mFD:MemberFormData)
-model.Members->model.Members: GenerateMemberId()
-model.Members->model.Member: Create(mFD.Name, mFD.Ssn, memberId)
+controller.Administrator->+view.console.ConsoleUI: DisplayAddMember()
+view.console.ConsoleUI->view.console.ConsoleUI: DisplayMemberForm("Add member")
+view.console.ConsoleUI->model.Member: Create(name, ssn)
+view.console.ConsoleUI-->-controller.Administrator: Member
+controller.Administrator->+model.Members: AddMember(Member)
+model.Members->model.Members: id = GenerateMemberId()
+model.Members->-model.Member: Id = id

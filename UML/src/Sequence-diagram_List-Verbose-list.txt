@@ -1,22 +1,30 @@
 title List Verbose list
   
-Program->model.FileSystem: Create(path:String)
-Program->model.Members: Create(FileSystem)
-model.Members->model.FileSystem: LoadMembers()
-Program->controller.Administrator: Create(ConsoleUI, Members)
-Program->controller.Administrator: Run()
-controller.Administrator->view.ConsoleUI: DisplayActionMenu()
-controller.Administrator->view.ConsoleUI: GetAction()
-view.ConsoleUI-->controller.Administrator: Action.ListVerbose
-controller.Administrator->controller.Administrator: ListVerbose()
-controller.Administrator->model.Members: GetMembers()
-model.Members-->controller.Administrator: ReadOnlyCollection<Member>
-controller.Administrator->view.ConsoleUI: DisplayVerboseList(members:ReadOnlyCollection<Member>)
+Program->model.FileSystem: fs = Create(path:String)
+Program->+model.Members: m = Create(fs)
+model.Members->-model.FileSystem: _members = LoadMembers()
+Program->view.console.ConsoleUI: v = Create()
+view.console.ConsoleUI->view.StartMenu: _startMenu = Create()
+Program->controller.Administrator: Create(v, m)
+Program->+controller.Administrator: Run()
+controller.Administrator->+view.console.ConsoleUI: DisplayMenu()
+view.console.ConsoleUI->-view.StartMenu: DisplayMenu()
+controller.Administrator->+view.console.ConsoleUI: GetAction()
+view.console.ConsoleUI->+view.StartMenu: GetAction()
+view.StartMenu-->-view.console.ConsoleUI: MenuAction.ListVerbose
+view.console.ConsoleUI-->-controller.Administrator: MenuAction.ListVerbose
+controller.Administrator->+controller.Administrator: ListVerbose()
+controller.Administrator->+model.Members: GetMembers()
+model.Members-->-controller.Administrator: ReadOnlyCollection<Member>
+controller.Administrator->+view.console.ConsoleUI: DisplayVerboseList(members:ReadOnlyCollection<Member>)
 
 alt members contains members
     loop for each member
-    view.ConsoleUI->view.ConsoleUI: DisplayMemberData(Member)
-end
-else there is no members
-    view.ConsoleUI->view.ConsoleUI: DisplayNoMembers()
-end
+    view.console.ConsoleUI->view.console.ConsoleUI: DisplayMemberData(Member)
+    end
+else if there is no members
+    view.console.ConsoleUI->view.console.ConsoleUI: DisplayNoMembers()
+    end
+view.console.ConsoleUI->-view.console.ConsoleUI: DisplayPressToGoBack()
+    
+controller.Administrator-->-Program: true
