@@ -4,7 +4,7 @@
 
 1. Go to the folder `compiled`.
 
-2. Select folder depending on OS.
+2. Extract the `.zip` depending on OS.
 
 - `macos` for Mac.
 - `Windows` for Windows.
