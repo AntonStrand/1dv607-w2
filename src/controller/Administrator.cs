@@ -54,6 +54,7 @@ namespace _1dv607_w2.controller
         case MenuAction.DeleteBoat:
           DeleteBoat();
           return true;
+
         case MenuAction.UpdateBoat:
           UpdateBoat();
           return true;
