@@ -1,17 +1,9 @@
 title Add new member
-  
-Program->+controller.Administrator: c = Create(ConsoleUI, Members)
-Program->controller.Administrator: Run()
-controller.Administrator->+view.console.ConsoleUI: DisplayMenu()
-view.console.ConsoleUI->-view.StartMenu: DisplayMenu()
-controller.Administrator->+view.console.ConsoleUI: GetAction()
-view.console.ConsoleUI->+view.StartMenu: GetAction()
-view.StartMenu-->-view.console.ConsoleUI: MenuAction.Add
-view.console.ConsoleUI-->-controller.Administrator: MenuAction.Add
-controller.Administrator->controller.Administrator: AddNewMember()
+
 controller.Administrator->+view.console.ConsoleUI: DisplayAddMember()
+activate controller.Administrator
 view.console.ConsoleUI->view.console.ConsoleUI: DisplayMemberForm("Add member")
-view.console.ConsoleUI->model.Member: Create(name, ssn)
+view.console.ConsoleUI-->*model.Member: Create(name, ssn)
 view.console.ConsoleUI-->-controller.Administrator: Member
 controller.Administrator->+model.Members: AddMember(Member)
 model.Members->model.Members: id = GenerateMemberId()
